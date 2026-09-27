@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- Debug builds only: no App Sandbox, so UI tests, snapshot mode and WIREPATH_IMPORT can read fixtures from
+     the repository. Release builds use WirePathMac.entitlements (sandboxed, user-selected files only).
+     WirePath never needs network entitlements: it analyzes files offline and captures no traffic. -->
+<dict/>
+</plist>

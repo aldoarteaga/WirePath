@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WirePath — Packet Inspector</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.wp{--win:#1D1D20;--side:#252528;--bar:#1D1D20;--surf:#232326;--surf2:#2A2A2E;--line:rgba(255,255,255,.075);--line2:rgba(255,255,255,.14);--fg:#ECECEF;--fg2:#A9A9B0;--fg3:#8B8B93;--sel:#1D63D6;--selsoft:rgba(77,148,255,.16);--acc:#5AA2FF;--stripe:rgba(255,255,255,.028);--ok:#52C58F;--warn:#E8A33D;--err:#F26C5F;--okbg:rgba(82,197,143,.13);--warnbg:rgba(232,163,61,.13);--errbg:rgba(242,108,95,.14);--ctrl:rgba(255,255,255,.08);--ctrl2:rgba(255,255,255,.13);--grid:rgba(255,255,255,.07);--m1:#4CC4CB;--m2:#A594F5;--hl:rgba(77,148,255,.30);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.wp.light{--win:#FFFFFF;--side:#EDEDF0;--bar:#FFFFFF;--surf:#FFFFFF;--surf2:#F5F5F7;--line:rgba(0,0,0,.085);--line2:rgba(0,0,0,.15);--fg:#1D1D1F;--fg2:#5E5E65;--fg3:#6C6C73;--sel:#0A64D8;--selsoft:rgba(10,100,216,.10);--acc:#0A64D8;--stripe:rgba(0,0,0,.025);--ok:#1C8A4E;--warn:#A86400;--err:#C63A2F;--okbg:rgba(28,138,78,.10);--warnbg:rgba(200,120,0,.11);--errbg:rgba(198,58,47,.10);--ctrl:rgba(0,0,0,.055);--ctrl2:rgba(0,0,0,.09);--grid:rgba(0,0,0,.07);--m1:#0E8F97;--m2:#6A52D9;--hl:rgba(10,100,216,.18)}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.btn{appearance:none;border:0;background:none;color:inherit;font:inherit;padding:0;margin:0;text-align:left;cursor:default}
+.gx{stroke:var(--win)}
+</style>
+</helmet>
+<div class="wp {{themeClass}}" style="width: 1440px; height: 900px; display: flex; background: var(--win); color: var(--fg); border-radius: 12px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line2); font-size: 13px">
+
+<nav aria-label="Analyses" style="width: 256px; flex-shrink: 0; display: flex; flex-direction: column; background: var(--side); border-right: 1px solid var(--line)">
+<div style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 10px 0 18px">
+<div style="display: flex; gap: 8px">
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.25)"></span>
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.25)"></span>
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.25)"></span>
+</div>
+<div style="flex-grow: 1"></div>
+<button class="btn" aria-label="Hide Sidebar (⌃⌘S)" style="width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3.5" width="14" height="11" rx="2.5"></rect><path d="M7 3.5v11"></path></svg></button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; padding: 2px 10px; overflow: hidden">
+<div style="display: flex; align-items: center; padding: 6px 8px 4px"><span style="font-size: 11px; font-weight: 600; color: var(--fg3)">Analyses</span><div style="flex-grow: 1"></div><span style="font-size: 11px; color: var(--fg3)">5</span></div>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px; background: var(--ctrl)">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13px; font-weight: 600">office-traffic.pcap</span>
+<span style="font-size: 11px; color: var(--fg2)">24 calls · Today, 09:14</span>
+<span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--warn)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path><path class="gx" d="M6 4.3v3.1M6 8.9v.05" stroke-width="1.4" stroke-linecap="round"></path></svg>3 SIP errors</span>
+</span>
+</button>
+<div style="display: flex; flex-direction: column; gap: 1px; padding: 2px 0 6px 22px">
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="color: var(--acc)"><rect x="2" y="2" width="5" height="5" rx="1.3"></rect><rect x="9" y="2" width="5" height="5" rx="1.3"></rect><rect x="2" y="9" width="5" height="5" rx="1.3"></rect><rect x="9" y="9" width="5" height="5" rx="1.3"></rect></svg><span style="flex-grow: 1">Overview</span><span style="font-size: 11px; color: var(--fg3)">⌘1</span></button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="color: var(--acc)"><path d="M4.6 2.2 6.3 2.7l.8 2.5-1.2 1.1a7 7 0 0 0 3.8 3.8l1.1-1.2 2.5.8.5 1.7c-.2.9-1 1.6-1.9 1.6C6.7 13 3 9.3 3 4.1c0-.9.7-1.7 1.6-1.9Z" stroke-linejoin="round"></path></svg><span style="flex-grow: 1">Calls</span><span style="font-size: 11px; color: var(--fg3)">24</span></button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--acc)"><path d="M2.5 5.5h10M10 3l2.5 2.5L10 8M13.5 10.5h-10M6 8l-2.5 2.5L6 13"></path></svg><span style="flex-grow: 1">SIP Dialogs</span><span style="font-size: 11px; color: var(--fg3)">26</span></button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true" style="color: var(--acc)"><path d="M2 8h1M4.7 5.5v5M7.2 2.8v10.4M9.7 5v6M12.2 6.5v3M14 8h0"></path></svg><span style="flex-grow: 1">RTP Streams</span><span style="font-size: 11px; color: var(--fg3)">42</span></button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" style="color: var(--acc)"><path d="M2 13.5h12"></path><path d="M3 4h4.5M5 7.2h6.5M8 10.4h5"></path></svg><span style="flex-grow: 1">Timeline</span></button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px; background: var(--sel); color: #FFFFFF"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2.5" width="12" height="11" rx="2"></rect><path d="M4.8 6h6.4M4.8 8.3h6.4M4.8 10.6h3.6"></path></svg><span style="flex-grow: 1">Packets</span><span style="font-size: 11px; opacity: .75">1.2M</span></button>
+</div>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0"><span style="font-size: 13px">customer-call.pcap</span><span style="font-size: 11px; color: var(--fg2)">1 call · Yesterday, 16:40</span><span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--warn)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path><path class="gx" d="M6 4.3v3.1M6 8.9v.05" stroke-width="1.4" stroke-linecap="round"></path></svg>Packet loss 2.9%</span></span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0"><span style="font-size: 13px">branch-03.pcap</span><span style="font-size: 11px; color: var(--fg2)">8 calls · Sep 24</span><span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--fg2)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0; color: var(--ok)"><circle cx="6" cy="6" r="5.2" fill="currentColor"></circle><path class="gx" d="m3.6 6.1 1.7 1.7 3.2-3.4" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>No issues</span></span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0"><span style="font-size: 13px">troubleshooting.pcap</span><span style="font-size: 11px; color: var(--fg2)">12 calls · Sep 22</span><span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--err)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0"><path d="M4 .8h4L11.2 4v4L8 11.2H4L.8 8V4Z" fill="currentColor"></path><path class="gx" d="M6 3.4v3.2M6 8.5v.05" stroke-width="1.4" stroke-linecap="round"></path></svg>One-way audio · 2 calls</span></span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; opacity: 0"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--fg3)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0"><span style="font-size: 13px; color: var(--fg2)">trunk-failover.pcapng</span><span style="font-size: 11px; color: var(--fg2)">Analyzing… 62% · 3.4M packets</span><span style="height: 4px; border-radius: 2px; background: var(--ctrl2); overflow: hidden; display: flex"><span style="width: 62%; background: var(--acc); border-radius: 2px"></span></span></span>
+</button>
+</div>
+<div style="height: 44px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 10px; border-top: 1px solid var(--line)">
+<button class="btn" aria-label="Import PCAP (⇧⌘I)" style="width: 28px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 2v10M2 7h10"></path></svg></button>
+<label style="flex-grow: 1; height: 24px; display: flex; align-items: center; gap: 6px; padding: 0 8px; border-radius: 6px; background: var(--ctrl); color: var(--fg3)"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"></circle><path d="m10.5 10.5 3.3 3.3"></path></svg><input aria-label="Filter analyses" placeholder="Filter" style="border: 0; background: transparent; color: var(--fg); font: inherit; font-size: 12px; outline: none; width: 100%; padding: 0"></label>
+</div>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 14px 0 12px; border-bottom: 1px solid var(--line); background: var(--bar)">
+<div style="display: flex; gap: 2px">
+<button class="btn" aria-label="Back (⌘[)" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.8 2.5 4.3 7l4.5 4.5"></path></svg></button>
+<button class="btn" aria-label="Forward (⌘])" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg3); opacity: .5"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 2.5 9.7 7l-4.5 4.5"></path></svg></button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 13px; font-weight: 600">Packets</span>
+<span style="font-size: 11px; color: var(--fg2)">office-traffic.pcap · 1,248,392 packets</span>
+</div>
+<div style="flex-grow: 1"></div>
+<button class="btn" style="height: 28px; display: flex; align-items: center; gap: 6px; padding: 0 10px; border-radius: 7px; background: var(--ctrl); font-size: 12.5px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--fg2)"><path d="M2.5 5.5h10M10 3l2.5 2.5L10 8M13.5 10.5h-10M6 8l-2.5 2.5L6 13"></path></svg>Open in SIP Flow</button>
+<div style="display: flex; gap: 2px">
+<button class="btn" aria-label="Go to Packet (⌘G)" style="width: 34px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"></path><path d="M14 3v10"></path></svg></button>
+<button class="btn" aria-label="Export Selected Packets (⇧⌘E)" style="width: 34px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M6 5.3 9 2.5l3 2.8"></path><path d="M6 7.5H4.5v8h9v-8H12"></path></svg></button>
+<button class="btn" aria-label="Hide Packet Details (⌥⌘I)" style="width: 34px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--acc)"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3.5" width="14" height="11" rx="2.5"></rect><path d="M11 3.5v11"></path></svg></button>
+</div>
+</header>
+
+<div style="height: 46px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--line)">
+<label style="flex-grow: 1; height: 28px; display: flex; align-items: center; gap: 6px; padding: 0 8px; box-sizing: border-box; border-radius: 7px; background: var(--ctrl); box-shadow: inset 0 0 0 1px var(--ok)">
+<svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" style="color: var(--ok); flex-shrink: 0"><path d="M3 5h12M5.5 9h7M8 13h2"></path></svg>
+<span style="display: flex; align-items: center; gap: 5px; height: 20px; padding: 0 4px 0 7px; border-radius: 5px; background: var(--selsoft); color: var(--acc); font-size: 12px; white-space: nowrap">Call · 09:42:15<button class="btn" aria-label="Remove call filter" style="display: flex; opacity: .8"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5"></path></svg></button></span>
+<span style="display: flex; align-items: center; gap: 5px; height: 20px; padding: 0 4px 0 7px; border-radius: 5px; background: var(--selsoft); color: var(--acc); font-size: 12px; white-space: nowrap">Protocol · SIP, RTP<button class="btn" aria-label="Remove protocol filter" style="display: flex; opacity: .8"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5"></path></svg></button></span>
+<input aria-label="Display filter" value="rtp.seq_gap or sip.status &gt;= 400" class="mono" style="border: 0; background: transparent; color: var(--fg); font-size: 12px; outline: none; flex-grow: 1; min-width: 0; padding: 0">
+<span style="font-size: 11px; color: var(--ok); white-space: nowrap">Valid filter</span>
+</label>
+<div role="radiogroup" aria-label="Protocol scope" style="display: flex; padding: 2px; border-radius: 7px; background: var(--ctrl)">
+<button class="btn" role="radio" aria-checked="false" style="padding: 3px 10px; border-radius: 5px; font-size: 12px; color: var(--fg2)">All</button>
+<button class="btn" role="radio" aria-checked="true" style="padding: 3px 10px; border-radius: 5px; font-size: 12px; background: var(--ctrl2); box-shadow: 0 1px 2px rgba(0,0,0,.18)">SIP + RTP</button>
+<button class="btn" role="radio" aria-checked="false" style="padding: 3px 10px; border-radius: 5px; font-size: 12px; color: var(--fg2)">SDP</button>
+<button class="btn" role="radio" aria-checked="false" style="padding: 3px 10px; border-radius: 5px; font-size: 12px; color: var(--fg2)">RTCP</button>
+<button class="btn" role="radio" aria-checked="false" style="padding: 3px 10px; border-radius: 5px; font-size: 12px; color: var(--fg2); display: flex; align-items: center; gap: 5px"><svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true" style="color: var(--warn)"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path></svg>Issues</button>
+</div>
+<span style="font-size: 11px; color: var(--fg2); white-space: nowrap">7,447 of 1,248,392</span>
+</div>
+
+<div style="flex-grow: 1; min-height: 0; display: flex">
+<section aria-label="Packet List" style="width: 650px; flex-shrink: 0; display: flex; flex-direction: column; border-right: 1px solid var(--line); min-height: 0">
+<div role="row" style="display: grid; grid-template-columns: 70px 80px 92px 92px 58px 50px minmax(0, 1fr); align-items: center; height: 26px; flex-shrink: 0; padding: 0 10px; font-size: 11.5px; font-weight: 500; color: var(--fg2); background: var(--surf2); border-bottom: 1px solid var(--line)">
+<span style="display: flex; align-items: center; gap: 4px; color: var(--fg)">No.<svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M1.5 5.5 4 3l2.5 2.5"></path></svg></span>
+<span>Time</span><span>Source</span><span>Destination</span><span>Protocol</span><span style="text-align: right; padding-right: 10px">Length</span><span>Info</span>
+</div>
+<div role="table" aria-label="Packets" style="flex-grow: 1; min-height: 0; overflow: hidden">
+<sc-for list="{{packets}}" as="p" hint-placeholder-count="30">
+<div role="row" aria-selected="{{p.selected}}" style="display: grid; grid-template-columns: 70px 80px 92px 92px 58px 50px minmax(0, 1fr); align-items: center; height: 24px; padding: 0 10px; font-size: 12px; background: {{p.bg}}; color: {{p.fg}}">
+<span class="mono" style="font-size: 11.5px">{{p.no}}</span>
+<span class="mono" style="font-size: 11.5px; color: {{p.sub}}">{{p.time}}</span>
+<span class="mono" style="font-size: 11.5px">{{p.src}}</span>
+<span class="mono" style="font-size: 11.5px">{{p.dst}}</span>
+<span style="display: flex; align-items: center; gap: 5px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 2px; background: {{p.dot}}"></span>{{p.proto}}</span>
+<span style="text-align: right; padding-right: 10px; color: {{p.sub}}">{{p.len}}</span>
+<span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: {{p.infoC}}">{{p.info}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Packet Details" style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; background: var(--surf)">
+<div style="height: 38px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--line)">
+<span style="font-size: 13px; font-weight: 600">Packet 482,113</span>
+<span style="font-size: 11px; color: var(--fg3)">0.000000 s · 1,042 bytes · SIP INVITE</span>
+<div style="flex-grow: 1"></div>
+<button class="btn" aria-label="Expand All (⌘→)" style="font-size: 11.5px; color: var(--acc)">Expand All</button>
+</div>
+<div role="tree" aria-label="Protocol layers" style="flex-grow: 1; min-height: 0; overflow: hidden; padding: 4px 0">
+<sc-for list="{{tree}}" as="n" hint-placeholder-count="25">
+<sc-if value="{{n.isLayer}}" hint-placeholder-val="{{true}}">
+<div role="treeitem" aria-expanded="{{n.open}}" style="height: 22px; display: flex; align-items: center; gap: 6px; padding: 0 14px; font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden">
+<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true" style="flex-shrink: 0; color: var(--fg3); transform: rotate({{n.rot}}deg)"><path d="M3 1.5 7.5 5 3 8.5Z" fill="currentColor"></path></svg>
+<span>{{n.name}}</span><span style="font-weight: 400; color: var(--fg2); overflow: hidden; text-overflow: ellipsis">{{n.value}}</span>
+</div>
+</sc-if>
+<sc-if value="{{n.isField}}" hint-placeholder-val="{{false}}">
+<div role="treeitem" aria-selected="{{n.sel}}" style="height: 22px; display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: center; padding: 0 14px 0 40px; font-size: 12px; background: {{n.bg}}">
+<span style="color: var(--fg2)">{{n.name}}</span>
+<span class="mono" style="font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{n.value}}</span>
+</div>
+</sc-if>
+</sc-for>
+</div>
+<div style="height: 196px; flex-shrink: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); background: var(--win)">
+<div style="height: 30px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 14px">
+<span style="font-size: 12px; font-weight: 600">Bytes</span>
+<span style="font-size: 11px; color: var(--fg3)">Call-ID · offset {{hlOffset}} · {{hlLen}} bytes</span>
+<div style="flex-grow: 1"></div>
+<div role="radiogroup" aria-label="Byte format" style="display: flex; padding: 2px; border-radius: 6px; background: var(--ctrl)">
+<button class="btn" role="radio" aria-checked="true" style="padding: 1px 8px; border-radius: 4px; font-size: 11px; background: var(--ctrl2)">Hex</button>
+<button class="btn" role="radio" aria-checked="false" style="padding: 1px 8px; border-radius: 4px; font-size: 11px; color: var(--fg2)">Bits</button>
+</div>
+</div>
+<div class="mono" style="display: flex; flex-direction: column; padding: 2px 14px 10px; font-size: 11.5px; line-height: 19px">
+<sc-for list="{{hex}}" as="h" hint-placeholder-count="8">
+<div style="display: flex; gap: 16px; white-space: pre">
+<span style="color: var(--fg3)">{{h.off}}</span>
+<span style="width: 380px"><span style="color: var(--fg2)">{{h.a}}</span><span style="background: var(--hl); color: var(--fg); border-radius: 2px">{{h.b}}</span><span style="color: var(--fg2)">{{h.c}}</span></span>
+<span><span style="color: var(--fg3)">{{h.x}}</span><span style="background: var(--hl); color: var(--fg); border-radius: 2px">{{h.y}}</span><span style="color: var(--fg3)">{{h.z}}</span></span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+</div>
+
+<footer style="height: 28px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 16px; border-top: 1px solid var(--line); font-size: 11px; color: var(--fg2); background: var(--bar)">
+<span>Displayed 7,447 · Marked 0 · Dropped 0</span>
+<div style="flex-grow: 1"></div>
+<span>Selected 482,113 · SIP INVITE · Call 09:42:15</span>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["Dark","Light"],"default":"Dark"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'Dark';
+    const A = '10.20.1.23', S = '10.20.0.5', B = '10.20.1.28';
+    const sip = [
+      ['482113', '0.000000', A, S, 'SIP/SDP', 1042, 'Request: INVITE sip:1008@pbx.office.lan'],
+      ['482114', '0.001984', S, A, 'SIP', 412, 'Status: 100 Trying'],
+      ['482117', '0.003811', S, B, 'SIP/SDP', 1118, 'Request: INVITE sip:1008@10.20.1.28:5060'],
+      ['482131', '0.019204', B, S, 'SIP', 398, 'Status: 100 Trying'],
+      ['482560', '0.212077', B, S, 'SIP', 506, 'Status: 180 Ringing'],
+      ['482562', '0.214390', S, A, 'SIP', 522, 'Status: 180 Ringing'],
+      ['486911', '3.841126', B, S, 'SIP/SDP', 1064, 'Status: 200 OK (INVITE)'],
+      ['486913', '3.843052', S, A, 'SIP/SDP', 1090, 'Status: 200 OK (INVITE)'],
+      ['487002', '3.861448', A, S, 'SIP', 438, 'Request: ACK sip:1008@10.20.0.5'],
+      ['487004', '3.863301', S, B, 'SIP', 446, 'Request: ACK sip:1008@10.20.1.28:5060']
+    ];
+    const rows = sip.map((r) => ({ no: r[0], time: r[1], src: r[2], dst: r[3], proto: r[4], len: r[5], info: r[6], kind: 'sip' }));
+    let no = 487010, t = 3.8804, sa = 10432, sb = 22871;
+    for (let i = 0; i < 20; i++) {
+      const ab = i % 2 === 0;
+      const seq = ab ? sa++ : sb++;
+      let info = 'PT=ITU-T G.729, SSRC=' + (ab ? '0x5A3C91E2' : '0x1F07B4C8') + ', Seq=' + seq + ', Time=' + (ab ? 160 * (seq - 10432) : 160 * (seq - 22871) + 48000);
+      let kind = ab ? 'rtpA' : 'rtpB';
+      if (i === 13) { info = 'Sequence gap: expected Seq=' + (seq - 1) + ', 1 packet lost · ' + info.slice(0, 32); kind = 'gap'; sb++; }
+      rows.push({ no: String(no), time: t.toFixed(6), src: ab ? A : B, dst: ab ? B : A, proto: 'RTP', len: 74, info: info, kind: kind });
+      no += 2 + (i % 3); t += ab ? 0.0004 : 0.0196;
+    }
+    const W = '#FFFFFF';
+    const packets = rows.map((r, i) => {
+      const sel = i === 0;
+      const gap = r.kind === 'gap';
+      return {
+        no: r.no, time: r.time, src: r.src, dst: r.dst, proto: r.proto, len: r.len, info: r.info,
+        selected: sel ? 'true' : 'false',
+        bg: sel ? 'var(--sel)' : gap ? 'var(--warnbg)' : (i % 2 ? 'var(--stripe)' : 'transparent'),
+        fg: sel ? W : 'var(--fg)', sub: sel ? 'rgba(255,255,255,.75)' : 'var(--fg3)',
+        infoC: sel ? W : gap ? 'var(--warn)' : 'var(--fg2)',
+        dot: r.kind === 'sip' ? 'var(--acc)' : r.kind === 'rtpB' ? 'var(--m2)' : r.kind === 'gap' ? 'var(--warn)' : 'var(--m1)'
+      };
+    });
+    const L = (name, value, open) => ({ isLayer: true, isField: false, name: name, value: value, open: open ? 'true' : 'false', rot: open ? 90 : 0 });
+    const F = (name, value, sel) => ({ isLayer: false, isField: true, name: name, value: value, sel: sel ? 'true' : 'false', bg: sel ? 'var(--selsoft)' : 'transparent' });
+    const tree = [
+      L('Frame 482113', ' 1,042 bytes on wire (8,336 bits), 1,042 captured', false),
+      L('Ethernet II', ' Src 00:0b:82:4f:1a:c3, Dst 00:1b:21:7e:90:d4', false),
+      L('Internet Protocol Version 4', ' 10.20.1.23 → 10.20.0.5', true),
+      F('Source', '10.20.1.23'), F('Destination', '10.20.0.5'), F('DSCP · TTL', 'CS3 (24) · 64'),
+      L('User Datagram Protocol', ' Src Port 5060, Dst Port 5060, Len 1,008', false),
+      L('Session Initiation Protocol', ' INVITE', true),
+      F('Request-Line', 'INVITE sip:1008@pbx.office.lan SIP/2.0'),
+      F('Via', 'SIP/2.0/UDP 10.20.1.23:5060;branch=z9hG4bK-5c1e8a'),
+      F('From', '"Soporte N1" <sip:1003@pbx.office.lan>;tag=a83f21'),
+      F('To', '<sip:1008@pbx.office.lan>'),
+      F('Call-ID', '7f3a9c21-4be0-4d1e-9a2f-51c8e0b7d6a4@10.20.1.23', true),
+      F('CSeq', '1 INVITE'),
+      F('Contact', '<sip:1003@10.20.1.23:5060>'),
+      F('Max-Forwards', '70'),
+      F('Allow', 'INVITE, ACK, CANCEL, BYE, OPTIONS, REFER'),
+      F('Content-Type', 'application/sdp · 312 bytes'),
+      L('Session Description Protocol', ' audio · G.729', true),
+      F('o=', '1003 38211 38211 IN IP4 10.20.1.23'),
+      F('c=', 'IN IP4 10.20.1.23'),
+      F('m=', 'audio 16384 RTP/AVP 18 101'),
+      F('a=rtpmap', '18 G729/8000'),
+      F('a=fmtp', '18 annexb=no'),
+      F('a=ptime', '20'),
+      F('a=', 'sendrecv')
+    ];
+    const hdr = '001b217e90d4000b824f1ac30800450004040000400040117a1e0a1401170a140005013c013c03f0b21a'.match(/../g).map((h) => parseInt(h, 16));
+    const text = 'INVITE sip:1008@pbx.office.lan SIP/2.0\r\nVia: SIP/2.0/UDP 10.20.1.23:5060;branch=z9hG4bK-5c1e8a\r\nFrom: "Soporte N1" <sip:1003@pbx.office.lan>;tag=a83f21\r\nTo: <sip:1008@pbx.office.lan>\r\nCall-ID: 7f3a9c21-4be0-4d1e-9a2f-51c8e0b7d6a4@10.20.1.23\r\nCSeq: 1 INVITE\r\nContact: <sip:1003@10.20.1.23:5060>\r\nMax-Forwards: 70\r\n';
+    const bytes = hdr.concat(Array.from(text).map((c) => c.charCodeAt(0)));
+    const hs = hdr.length + text.indexOf('Call-ID:');
+    const he = hdr.length + text.indexOf('\r\nCSeq');
+    const hx = (n, w) => n.toString(16).padStart(w, '0');
+    const asc = (b) => (b >= 32 && b < 127) ? String.fromCharCode(b) : '·';
+    const first = Math.floor(hs / 16) - 2;
+    const hex = [];
+    for (let l = first; l < first + 8; l++) {
+      let a = '', b = '', c = '', x = '', y = '', z = '';
+      for (let k = 0; k < 16; k++) {
+        const i = l * 16 + k;
+        const v = bytes[i];
+        const hh = v === undefined ? '  ' : hx(v, 2);
+        const ch = v === undefined ? ' ' : asc(v);
+        const sp = k === 15 ? '' : (k === 7 ? '  ' : ' ');
+        if (i < hs) { a += hh + sp; x += ch; } else if (i < he) { b += hh + (i + 1 < he ? sp : ''); if (i + 1 >= he) c += sp; y += ch; } else { c += hh + sp; z += ch; }
+      }
+      hex.push({ off: hx(l * 16, 4), a: a, b: b, c: c, x: x, y: y, z: z });
+    }
+    return { themeClass: theme === 'Light' ? 'light' : '', packets: packets, tree: tree, hex: hex, hlOffset: '0x' + hx(hs, 4), hlLen: he - hs };
+  }
+}
+</script>
+</body>
+</html>

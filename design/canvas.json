@@ -1,0 +1,98 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Interactions.dc.html": {
+      "h": 900,
+      "radius": 12,
+      "title": "Interactions, Menus & Shortcuts",
+      "w": 1440,
+      "x": 0,
+      "y": 3360
+    },
+    "Investigation-Light.dc.html": {
+      "h": 1280,
+      "radius": 12,
+      "title": "Call Investigation — Light",
+      "w": 1440,
+      "x": 1520,
+      "y": 1680
+    },
+    "Investigation.dc.html": {
+      "h": 1280,
+      "radius": 12,
+      "title": "Call Investigation — Dark",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "h": 900,
+      "radius": 12,
+      "title": "Overview — Dark",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Overview-Light.dc.html": {
+      "h": 900,
+      "radius": 12,
+      "title": "Overview — Light",
+      "w": 1440,
+      "x": 0,
+      "y": 1680
+    },
+    "Packets.dc.html": {
+      "h": 900,
+      "radius": 12,
+      "title": "Packet Inspector — Dark",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-26T18:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "titleActions": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "Import, Actions & Shortcuts",
+      "w": 240,
+      "x": 0,
+      "y": 3080
+    },
+    "titleDark": {
+      "kind": "title1",
+      "maxW": 4480,
+      "text": "WirePath · Dark Mode",
+      "w": 240,
+      "x": 0,
+      "y": -280
+    },
+    "titleLight": {
+      "kind": "title1",
+      "maxW": 2960,
+      "text": "WirePath · Light Mode",
+      "w": 240,
+      "x": 0,
+      "y": 1400
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Investigation.dc.html",
+    "Packets.dc.html",
+    "Overview-Light.dc.html",
+    "Investigation-Light.dc.html",
+    "Interactions.dc.html"
+  ],
+  "pages": [],
+  "title": "WirePath — macOS VoIP PCAP Analyzer"
+}

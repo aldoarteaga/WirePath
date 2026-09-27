@@ -1,0 +1,3178 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ could not allocate a relay on %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ could not allocate a relay on %2$@: %3$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ no pudo asignar un relay en %@: %@"
+          }
+        }
+      }
+    },
+    "%@ sent %@ for Call-ID %@ %lld times; no ACK from %@ followed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sent %2$@ for Call-ID %3$@ %#@arg4@; no ACK from %5$@ followed"
+          },
+          "substitutions": {
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "once"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg times"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ envió %2$@ para el Call-ID %3$@ %#@arg4@; no llegó ACK de %5$@"
+          },
+          "substitutions": {
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "una vez"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg veces"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@ sent %@ for Call-ID %@; no ACK from %@ followed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ sent %2$@ for Call-ID %3$@; no ACK from %4$@ followed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ envió %@ para el Call-ID %@; no llegó ACK de %@"
+          }
+        }
+      }
+    },
+    "%@ · %lld retransmitted segments of %lld packets": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %#@arg2@ of %#@arg3@"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted segment"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted segments"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packet"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packets"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %#@arg2@ de %#@arg3@"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg segmento retransmitido"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg segmentos retransmitidos"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquete"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquetes"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@ · %lld retransmitted segments of %lld packets, %lld gaps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %#@arg2@ of %#@arg3@, %#@arg4@"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted segment"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted segments"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packet"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packets"
+                    }
+                  }
+                }
+              }
+            },
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg gap"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg gaps"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %#@arg2@ de %#@arg3@, %#@arg4@"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg segmento retransmitido"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg segmentos retransmitidos"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquete"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquetes"
+                    }
+                  }
+                }
+              }
+            },
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg hueco"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg huecos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@ · Callee": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Llamado"
+          }
+        }
+      }
+    },
+    "%@ · Caller": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Llamante"
+          }
+        }
+      }
+    },
+    "%@ · INVITE never received a final response": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · el INVITE nunca recibió una respuesta final"
+          }
+        }
+      }
+    },
+    "%@ · RTCP round trip up to %lld ms (mean %lld ms over %lld reports)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · RTCP round trip up to %2$lld ms (mean %3$lld ms over %#@arg4@)"
+          },
+          "substitutions": {
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg report"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg reports"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · ida y vuelta RTCP de hasta %2$lld ms (media %3$lld ms en %#@arg4@)"
+          },
+          "substitutions": {
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg informe"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg informes"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@ · RTP only from %@; %lld packets from %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · RTP only from %2$@; %#@arg3@ from %4$@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packet"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packets"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · RTP solo desde %2$@; %#@arg3@ desde %4$@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquete"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquetes"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@ · SYN without SYN/ACK": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · SYN sin SYN/ACK"
+          }
+        }
+      }
+    },
+    "%@ · SYN without SYN/ACK (SIP over TCP)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · SYN sin SYN/ACK (SIP sobre TCP)"
+          }
+        }
+      }
+    },
+    "%@ · answered call with no RTP in the capture (media may have taken another path)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · llamada contestada sin RTP en la captura (los medios pudieron tomar otra ruta)"
+          }
+        }
+      }
+    },
+    "%@ · credentials were rejected %lld times (wrong password, realm or user)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · credentials were rejected %#@arg2@ (wrong password, realm or user)"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "once"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg times"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · las credenciales fueron rechazadas %#@arg2@ (contraseña, dominio o usuario incorrectos)"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "una vez"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg veces"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@ · receiver's RTCP XR: MOS-LQ %@%@, loss %@%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ · receiver's RTCP XR: MOS-LQ %2$@%3$@, loss %4$@%%"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · RTCP XR del receptor: MOS-LQ %@%@, pérdida %@%%"
+          }
+        }
+      }
+    },
+    "%@ · reset by %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ · reset by %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · reiniciada por %@"
+          }
+        }
+      }
+    },
+    "%@, %lld refused; no pair succeeded": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %#@arg2@; no pair succeeded"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg refused"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg refused"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %#@arg2@; ningún par tuvo éxito"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg rechazada"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg rechazadas"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@, none answered; no pair succeeded": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, ninguna respondida; ningún par tuvo éxito"
+          }
+        }
+      }
+    },
+    "%@: %lld DTLS records, %lld alerts — SRTP keys may not have been agreed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %#@arg2@, %#@arg3@ — SRTP keys may not have been agreed"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg DTLS record"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg DTLS records"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg alert"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg alerts"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %#@arg2@, %#@arg3@ — quizá no se acordaron las claves SRTP"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg registro DTLS"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg registros DTLS"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg alerta"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg alertas"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@: %lld DTLS records, keys not confirmed by both sides — SRTP keys may not have been agreed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %#@arg2@, keys not confirmed by both sides — SRTP keys may not have been agreed"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg DTLS record"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg DTLS records"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %#@arg2@, claves no confirmadas por ambos lados — quizá no se acordaron las claves SRTP"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg registro DTLS"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg registros DTLS"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%@: %lld requests got no final response within %lld s": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %#@arg2@ no final response within %3$lld s"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg request got"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg requests got"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %#@arg2@ respuesta final en %3$lld s"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitud no recibió"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitudes no recibieron"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld Binding requests to %@ (retransmissions included) got no answer; server-reflexive candidates could not be gathered": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ to %2$@ (retransmissions included) got no answer; server-reflexive candidates could not be gathered"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg Binding request"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg Binding requests"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ a %2$@ (con retransmisiones) sin respuesta; no se pudieron obtener candidatos reflexivos de servidor"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitud Binding"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitudes Binding"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld SIP errors": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld SIP error"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld SIP errors"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld error SIP"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld errores SIP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld STUN Binding requests answered with %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ answered with %2$lld"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg STUN Binding request"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg STUN Binding requests"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ con %2$lld"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitud STUN Binding respondida"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitudes STUN Binding respondidas"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld more connections with retransmissions or unanswered SYNs": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more connection with retransmissions or unanswered SYNs"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more connections with retransmissions or unanswered SYNs"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld conexión más con retransmisiones o SYN sin respuesta"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld conexiones más con retransmisiones o SYN sin respuesta"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld out-of-order packets on %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ on %2$@"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg out-of-order packet"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg out-of-order packets"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ en %2$@"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquete fuera de orden"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquetes fuera de orden"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld retransmitted %@ messages outside calls (signalling loss or slow responses)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ outside calls (signalling loss or slow responses)"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted %@ message"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted %@ messages"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ fuera de llamadas (pérdida de señalización o respuestas lentas)"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg mensaje %@ retransmitido"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg mensajes %@ retransmitidos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld retransmitted SIP messages in %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ in %2$@"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted SIP message"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg retransmitted SIP messages"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%#@arg1@ en %2$@"
+          },
+          "substitutions": {
+            "arg1": {
+              "argNum": 1,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg mensaje SIP retransmitido"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg mensajes SIP retransmitidos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld × %lld %@ (%@) from %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld × %2$lld %3$@ (%4$@) from %5$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %lld %@ (%@) desde %@"
+          }
+        }
+      }
+    },
+    "Answered": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contestada"
+          }
+        }
+      }
+    },
+    "Authentication failed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falló la autenticación"
+          }
+        }
+      }
+    },
+    "BYE from callee": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BYE del llamado"
+          }
+        }
+      }
+    },
+    "BYE from caller": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BYE del llamante"
+          }
+        }
+      }
+    },
+    "Bad": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mala"
+          }
+        }
+      }
+    },
+    "CANCEL from caller": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CANCEL del llamante"
+          }
+        }
+      }
+    },
+    "Cancelled": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelada"
+          }
+        }
+      }
+    },
+    "Candidate pairs failed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pares de candidatos fallidos"
+          }
+        }
+      }
+    },
+    "Capture ends inside a block at byte %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La captura termina dentro de un bloque en el byte %lld"
+          }
+        }
+      }
+    },
+    "Capture ends inside a block header": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La captura termina dentro de la cabecera de un bloque"
+          }
+        }
+      }
+    },
+    "Capture ends inside a record header": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La captura termina dentro de la cabecera de un registro"
+          }
+        }
+      }
+    },
+    "Capture ends inside packet %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La captura termina dentro del paquete %lld"
+          }
+        }
+      }
+    },
+    "Capture truncated": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Captura truncada"
+          }
+        }
+      }
+    },
+    "Completed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completada"
+          }
+        }
+      }
+    },
+    "Could not open “%@”: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Could not open “%1$@”: %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo abrir “%@”: %@"
+          }
+        }
+      }
+    },
+    "DTLS alert": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta DTLS"
+          }
+        }
+      }
+    },
+    "DTLS handshake incomplete": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handshake DTLS incompleto"
+          }
+        }
+      }
+    },
+    "Damaged block at byte %lld (length fields disagree)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloque dañado en el byte %lld (los campos de longitud no coinciden)"
+          }
+        }
+      }
+    },
+    "Direct media": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medios directos"
+          }
+        }
+      }
+    },
+    "Endpoint reports low quality": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El extremo informa baja calidad"
+          }
+        }
+      }
+    },
+    "Event %u": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evento %u"
+          }
+        }
+      }
+    },
+    "Failed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fallida"
+          }
+        }
+      }
+    },
+    "Fair": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        }
+      }
+    },
+    "G.711 A-law (built in)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G.711 ley A (integrado)"
+          }
+        }
+      }
+    },
+    "G.711 µ-law (built in)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G.711 ley µ (integrado)"
+          }
+        }
+      }
+    },
+    "G.722 (built in)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G.722 (integrado)"
+          }
+        }
+      }
+    },
+    "Good": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buena"
+          }
+        }
+      }
+    },
+    "High round-trip time": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo de ida y vuelta alto"
+          }
+        }
+      }
+    },
+    "Host": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host"
+          }
+        }
+      }
+    },
+    "ICE %@ connected on %@ ↔ %@ but no DTLS or RTP followed on that pair": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "ICE %1$@ connected on %2$@ ↔ %3$@ but no DTLS or RTP followed on that pair"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ICE %@ conectó en %@ ↔ %@, pero no siguió DTLS ni RTP en ese par"
+          }
+        }
+      }
+    },
+    "ICE %@ selected a relay candidate (%@ → %@); media takes the longer path through the TURN server": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "ICE %1$@ selected a relay candidate (%2$@ → %3$@); media takes the longer path through the TURN server"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ICE %@ eligió un candidato relay (%@ → %@); los medios toman la ruta más larga a través del servidor TURN"
+          }
+        }
+      }
+    },
+    "ICE %@: %lld connectivity checks (%lld requests) on %lld candidate pairs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ICE %1$@: %#@arg2@ (%#@arg3@) on %#@arg4@"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg connectivity check"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg connectivity checks"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg request"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg requests"
+                    }
+                  }
+                }
+              }
+            },
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg candidate pair"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg candidate pairs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ICE %1$@: %#@arg2@ (%#@arg3@) en %#@arg4@"
+          },
+          "substitutions": {
+            "arg2": {
+              "argNum": 2,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg comprobación de conectividad"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg comprobaciones de conectividad"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitud"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg solicitudes"
+                    }
+                  }
+                }
+              }
+            },
+            "arg4": {
+              "argNum": 4,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg par de candidatos"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg pares de candidatos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ICE %@: %lld of %lld pairs failed: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ICE %1$@: %2$lld of %#@arg3@ failed: %4$@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg pair"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg pairs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ICE %1$@: fallaron %2$lld de %#@arg3@: %4$@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg par"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg pares"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ICE connectivity failed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falló la conectividad ICE"
+          }
+        }
+      }
+    },
+    "ICE failed · %lld sessions": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "ICE failed · %lld session"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "ICE failed · %lld sessions"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "ICE falló · %lld sesión"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "ICE falló · %lld sesiones"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "IP address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección IP"
+          }
+        }
+      }
+    },
+    "Invalid block length %lld at byte %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Invalid block length %1$lld at byte %2$lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longitud de bloque no válida %lld en el byte %lld"
+          }
+        }
+      }
+    },
+    "Invalid record length %lld at byte %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Invalid record length %1$lld at byte %2$lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longitud de registro no válida %lld en el byte %lld"
+          }
+        }
+      }
+    },
+    "Invalid section header at byte %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cabecera de sección no válida en el byte %lld"
+          }
+        }
+      }
+    },
+    "Jitter %lld ms": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jitter %lld ms"
+          }
+        }
+      }
+    },
+    "Jitter peak %@ on %@ at +%@ s": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Jitter peak %1$@ on %2$@ at +%3$@ s"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pico de jitter de %@ en %@ a +%@ s"
+          }
+        }
+      }
+    },
+    "L16 linear PCM (built in)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L16 PCM lineal (integrado)"
+          }
+        }
+      }
+    },
+    "Loss burst at +%@ – %@ s · %lld packets, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loss burst at +%1$@ – %2$@ s · %#@arg3@, %4$@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packet"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg packets"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ráfaga de pérdida a +%1$@ – %2$@ s · %#@arg3@, %4$@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquete"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg paquetes"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Loss burst · %lld packets": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Loss burst · %lld packet"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Loss burst · %lld packets"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Ráfaga · %lld paquete"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Ráfaga · %lld paquetes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Low estimated quality": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calidad estimada baja"
+          }
+        }
+      }
+    },
+    "Media relayed through TURN": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medios retransmitidos por TURN"
+          }
+        }
+      }
+    },
+    "Media via %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medios vía %@"
+          }
+        }
+      }
+    },
+    "Missing ACK for %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falta el ACK para %lld"
+          }
+        }
+      }
+    },
+    "More TCP problems": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más problemas TCP"
+          }
+        }
+      }
+    },
+    "More than %lld RTCP reports: later reports were not analyzed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más de %lld informes RTCP: los siguientes no se analizaron"
+          }
+        }
+      }
+    },
+    "More than %lld RTP streams: later streams were not analyzed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más de %lld streams RTP: los siguientes no se analizaron"
+          }
+        }
+      }
+    },
+    "More than %lld TCP connections: later connections were not analyzed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más de %lld conexiones TCP: las siguientes no se analizaron"
+          }
+        }
+      }
+    },
+    "More than %lld flows: later conversations are not grouped into flows": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más de %lld flujos: las conversaciones siguientes no se agrupan en flujos"
+          }
+        }
+      }
+    },
+    "More than %lld interfaces; the rest are ignored": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más de %lld interfaces; el resto se ignora"
+          }
+        }
+      }
+    },
+    "No RTP captured": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se capturó RTP"
+          }
+        }
+      }
+    },
+    "No SIP traffic": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin tráfico SIP"
+          }
+        }
+      }
+    },
+    "No calls · %lld SIP messages": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "No calls · %lld SIP message"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "No calls · %lld SIP messages"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Sin llamadas · %lld mensaje SIP"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Sin llamadas · %lld mensajes SIP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "No final response": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin respuesta final"
+          }
+        }
+      }
+    },
+    "No issues": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin problemas"
+          }
+        }
+      }
+    },
+    "No media": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin medios"
+          }
+        }
+      }
+    },
+    "No media after ICE": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin medios después de ICE"
+          }
+        }
+      }
+    },
+    "One-way audio": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio en un solo sentido"
+          }
+        }
+      }
+    },
+    "One-way audio · %lld calls": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "One-way audio · %lld call"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "One-way audio · %lld calls"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Audio en un solo sentido · %lld llamada"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Audio en un solo sentido · %lld llamadas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Opus (system decoder)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opus (decodificador del sistema)"
+          }
+        }
+      }
+    },
+    "Packet %lld is longer than its interface's snapshot length (%lld > %lld bytes)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Packet %1$lld is longer than its interface's snapshot length (%2$lld > %3$lld bytes)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El paquete %lld supera la longitud de captura de su interfaz (%lld > %lld bytes)"
+          }
+        }
+      }
+    },
+    "Packet %lld is longer than the snapshot length (%lld > %lld bytes)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Packet %1$lld is longer than the snapshot length (%2$lld > %3$lld bytes)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El paquete %lld supera la longitud de captura (%lld > %lld bytes)"
+          }
+        }
+      }
+    },
+    "Packet block at byte %lld declares more data than it contains": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El bloque de paquete en el byte %lld declara más datos de los que contiene"
+          }
+        }
+      }
+    },
+    "Packet loss %@%%": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pérdida de paquetes %@%%"
+          }
+        }
+      }
+    },
+    "Packet number": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Número de paquete"
+          }
+        }
+      }
+    },
+    "Packet references unknown interface %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El paquete hace referencia a la interfaz desconocida %lld"
+          }
+        }
+      }
+    },
+    "Payload text": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto del payload"
+          }
+        }
+      }
+    },
+    "Peer Reflexive": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reflexivo de par"
+          }
+        }
+      }
+    },
+    "Poor": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deficiente"
+          }
+        }
+      }
+    },
+    "Poor call quality": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mala calidad de llamada"
+          }
+        }
+      }
+    },
+    "Port": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puerto"
+          }
+        }
+      }
+    },
+    "Protocol": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protocolo"
+          }
+        }
+      }
+    },
+    "Proxy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proxy"
+          }
+        }
+      }
+    },
+    "Quality issues · %lld calls": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Quality issues · %lld call"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Quality issues · %lld calls"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Problemas de calidad · %lld llamada"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Problemas de calidad · %lld llamadas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "REGISTER %@ · %lld response %lld times": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REGISTER %1$@ · %2$lld response %#@arg3@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "once"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg times"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REGISTER %1$@ · respuesta %2$lld %#@arg3@"
+          },
+          "substitutions": {
+            "arg3": {
+              "argNum": 3,
+              "formatSpecifier": "lld",
+              "variations": {
+                "plural": {
+                  "one": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "una vez"
+                    }
+                  },
+                  "other": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg veces"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "RTP SSRC": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSRC de RTP"
+          }
+        }
+      }
+    },
+    "Registration failed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falló el registro"
+          }
+        }
+      }
+    },
+    "Rejected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechazada"
+          }
+        }
+      }
+    },
+    "Relay": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relay"
+          }
+        }
+      }
+    },
+    "Reordered packets": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquetes reordenados"
+          }
+        }
+      }
+    },
+    "Ringing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timbrando"
+          }
+        }
+      }
+    },
+    "SIP Call-ID / URI": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call-ID / URI de SIP"
+          }
+        }
+      }
+    },
+    "SIP Server": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor SIP"
+          }
+        }
+      }
+    },
+    "SIP Trunk": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troncal SIP"
+          }
+        }
+      }
+    },
+    "SIP problems · %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Problemas SIP · %lld"
+          }
+        }
+      }
+    },
+    "SIP retransmissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retransmisiones SIP"
+          }
+        }
+      }
+    },
+    "SIP transaction timeout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo de espera de transacción SIP"
+          }
+        }
+      }
+    },
+    "SSRC change": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambio de SSRC"
+          }
+        }
+      }
+    },
+    "SSRC change on %@ at +%@ s · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "SSRC change on %1$@ at +%2$@ s · %3$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambio de SSRC en %@ a +%@ s · %@"
+          }
+        }
+      }
+    },
+    "SSRC change on %@ at +%@ s · %@ · no re-INVITE": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "SSRC change on %1$@ at +%2$@ s · %3$@ · no re-INVITE"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambio de SSRC en %@ a +%@ s · %@ · sin re-INVITE"
+          }
+        }
+      }
+    },
+    "STUN server not responding": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor STUN no responde"
+          }
+        }
+      }
+    },
+    "Server Reflexive": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reflexivo de servidor"
+          }
+        }
+      }
+    },
+    "Still active at capture end": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa al final de la captura"
+          }
+        }
+      }
+    },
+    "TCP connection not answered": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión TCP sin respuesta"
+          }
+        }
+      }
+    },
+    "TCP connection reset": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión TCP reiniciada"
+          }
+        }
+      }
+    },
+    "TCP retransmissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retransmisiones TCP"
+          }
+        }
+      }
+    },
+    "TURN allocation failed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falló la asignación TURN"
+          }
+        }
+      }
+    },
+    "The capture file ends in the middle of a packet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de captura termina a mitad de un paquete"
+          }
+        }
+      }
+    },
+    "The capture is damaged at byte %lld: %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "The capture is damaged at byte %1$lld: %2$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La captura está dañada en el byte %lld: %@."
+          }
+        }
+      }
+    },
+    "The compressed capture could not be decompressed: %@.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo descomprimir la captura: %@."
+          }
+        }
+      }
+    },
+    "The file is empty.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo está vacío."
+          }
+        }
+      }
+    },
+    "The saved results are damaged. Re-analyze the capture.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los resultados guardados están dañados. Vuelve a analizar la captura."
+          }
+        }
+      }
+    },
+    "The saved results were created by an older version of WirePath. Re-analyze the capture.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los resultados guardados son de una versión anterior de WirePath. Vuelve a analizar la captura."
+          }
+        }
+      }
+    },
+    "This compressed format is not supported. Decompress the capture and import it again.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este formato comprimido no es compatible. Descomprime la captura e impórtala de nuevo."
+          }
+        }
+      }
+    },
+    "Unknown": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconocido"
+          }
+        }
+      }
+    },
+    "WebRTC limits reached (%lld STUN transactions, %lld ICE sessions or %lld TURN allocations): later ones were not analyzed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "WebRTC limits reached (%1$lld STUN transactions, %2$lld ICE sessions or %3$lld TURN allocations): later ones were not analyzed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se alcanzaron los límites de WebRTC (%lld transacciones STUN, %lld sesiones ICE o %lld asignaciones TURN): las siguientes no se analizaron"
+          }
+        }
+      }
+    },
+    "WebRTC problems": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Problemas de WebRTC"
+          }
+        }
+      }
+    },
+    "a loss burst at +%lld s": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "una ráfaga de pérdida a +%lld s"
+          }
+        }
+      }
+    },
+    "block extends past the end of the file": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "el bloque se extiende más allá del final del archivo"
+          }
+        }
+      }
+    },
+    "block length fields disagree": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "los campos de longitud del bloque no coinciden"
+          }
+        }
+      }
+    },
+    "both directions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ambos sentidos"
+          }
+        }
+      }
+    },
+    "cannot create %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no se puede crear %@"
+          }
+        }
+      }
+    },
+    "cannot initialise DEFLATE decoder": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no se puede iniciar el decodificador DEFLATE"
+          }
+        }
+      }
+    },
+    "client error": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "error del cliente"
+          }
+        }
+      }
+    },
+    "file too short": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "archivo demasiado corto"
+          }
+        }
+      }
+    },
+    "global failure": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fallo global"
+          }
+        }
+      }
+    },
+    "iLBC (system decoder)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iLBC (decodificador del sistema)"
+          }
+        }
+      }
+    },
+    "invalid block length %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "longitud de bloque no válida %lld"
+          }
+        }
+      }
+    },
+    "invalid section byte-order magic": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marca de orden de bytes de sección no válida"
+          }
+        }
+      }
+    },
+    "jitter %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "jitter de %@"
+          }
+        }
+      }
+    },
+    "jitter spikes to %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "picos de jitter de %@"
+          }
+        }
+      }
+    },
+    "not a gzip file": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no es un archivo gzip"
+          }
+        }
+      }
+    },
+    "packet loss %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pérdida de paquetes de %@"
+          }
+        }
+      }
+    },
+    "pcap header is incomplete": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "la cabecera pcap está incompleta"
+          }
+        }
+      }
+    },
+    "pcapng block is incomplete": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "el bloque pcapng está incompleto"
+          }
+        }
+      }
+    },
+    "server error": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "error del servidor"
+          }
+        }
+      }
+    },
+    "status %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "estado %lld"
+          }
+        }
+      }
+    },
+    "the first packet record is damaged": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "el primer registro de paquete está dañado"
+          }
+        }
+      }
+    },
+    "the server answered %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "el servidor respondió %@"
+          }
+        }
+      }
+    },
+    "the server answered %@ (credentials rejected)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "el servidor respondió %@ (credenciales rechazadas)"
+          }
+        }
+      }
+    },
+    "the server never answered": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "el servidor nunca respondió"
+          }
+        }
+      }
+    },
+    "truncated header": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cabecera truncada"
+          }
+        }
+      }
+    },
+    "unexpected end of compressed data": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fin inesperado de los datos comprimidos"
+          }
+        }
+      }
+    },
+    "unknown compression method": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "método de compresión desconocido"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

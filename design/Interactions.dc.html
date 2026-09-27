@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WirePath — Import, Actions and Shortcuts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.wp{--win:#1D1D20;--side:#252528;--bar:#1D1D20;--surf:#232326;--surf2:#2A2A2E;--line:rgba(255,255,255,.075);--line2:rgba(255,255,255,.14);--fg:#ECECEF;--fg2:#A9A9B0;--fg3:#8B8B93;--sel:#1D63D6;--selsoft:rgba(77,148,255,.16);--acc:#5AA2FF;--ok:#52C58F;--warn:#E8A33D;--err:#F26C5F;--ctrl:rgba(255,255,255,.08);--ctrl2:rgba(255,255,255,.13);--m1:#4CC4CB;--desk:#161618;--menu:rgba(43,43,47,.98);--mshadow:0 14px 40px rgba(0,0,0,.55),0 0 0 .5px rgba(255,255,255,.16);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.wp.light{--win:#FFFFFF;--side:#EDEDF0;--bar:#FFFFFF;--surf:#FFFFFF;--surf2:#F5F5F7;--line:rgba(0,0,0,.085);--line2:rgba(0,0,0,.15);--fg:#1D1D1F;--fg2:#5E5E65;--fg3:#6C6C73;--sel:#0A64D8;--selsoft:rgba(10,100,216,.10);--acc:#0A64D8;--ok:#1C8A4E;--warn:#A86400;--err:#C63A2F;--ctrl:rgba(0,0,0,.055);--ctrl2:rgba(0,0,0,.09);--m1:#0E8F97;--desk:#E4E4E8;--menu:rgba(248,248,250,.98);--mshadow:0 14px 40px rgba(0,0,0,.2),0 0 0 .5px rgba(0,0,0,.2)}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.btn{appearance:none;border:0;background:none;color:inherit;font:inherit;padding:0;margin:0;text-align:left;cursor:default}
+.gx{stroke:var(--win)}
+</style>
+</helmet>
+<div class="wp {{themeClass}}" style="width: 1440px; height: 900px; box-sizing: border-box; padding: 34px 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 28px 36px; background: var(--desk); color: var(--fg); border-radius: 12px; overflow: hidden; font-size: 13px">
+
+<div style="display: flex; flex-direction: column; gap: 10px; min-height: 0">
+<span style="font-size: 12px; font-weight: 600; color: var(--fg2)">Sidebar context menu · right-click an analysis</span>
+<div style="flex-grow: 1; position: relative; border-radius: 10px; overflow: hidden; background: var(--win); box-shadow: 0 0 0 1px var(--line2)">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 230px; background: var(--side); border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; padding: 12px 10px; box-sizing: border-box">
+<span style="font-size: 11px; font-weight: 600; color: var(--fg3); padding: 0 8px 4px">Analyses</span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 7px 8px; border-radius: 7px"><span style="font-size: 13px">office-traffic.pcap</span><span style="font-size: 11px; color: var(--fg2)">24 calls · Today, 09:14</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 6px 7px; border-radius: 7px; box-shadow: inset 0 0 0 2px var(--sel)"><span style="font-size: 13px">customer-call.pcap</span><span style="font-size: 11px; color: var(--fg2)">1 call · Yesterday, 16:40</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 7px 8px; border-radius: 7px"><span style="font-size: 13px">branch-03.pcap</span><span style="font-size: 11px; color: var(--fg2)">8 calls · Sep 24</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 7px 8px; border-radius: 7px"><span style="font-size: 13px">troubleshooting.pcap</span><span style="font-size: 11px; color: var(--fg2)">12 calls · Sep 22</span></div>
+</div>
+<div role="menu" aria-label="Analysis actions" style="position: absolute; left: 150px; top: 86px; width: 250px; display: flex; flex-direction: column; padding: 5px; border-radius: 9px; background: var(--menu); box-shadow: var(--mshadow); font-size: 13px">
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Open in New Window<span style="flex-grow: 1"></span><span style="color: var(--fg3)">⌥⌘O</span></button>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Show in Finder<span style="flex-grow: 1"></span><span style="color: var(--fg3)">⇧⌘R</span></button>
+<span style="height: 1px; background: var(--line2); margin: 5px 10px"></span>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px; background: var(--sel); color: #FFFFFF">Rename…<span style="flex-grow: 1"></span><span style="opacity: .8">↩</span></button>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Duplicate Analysis</button>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Export Report…<span style="flex-grow: 1"></span><span style="color: var(--fg3)">⇧⌘E</span></button>
+<span style="height: 1px; background: var(--line2); margin: 5px 10px"></span>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Re-analyze<span style="flex-grow: 1"></span><span style="color: var(--fg3)">⌘R</span></button>
+<span style="height: 1px; background: var(--line2); margin: 5px 10px"></span>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Close Analysis<span style="flex-grow: 1"></span><span style="color: var(--fg3)">⌘W</span></button>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px; color: var(--err)">Delete Analysis…<span style="flex-grow: 1"></span><span style="opacity: .8">⌘⌫</span></button>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; min-height: 0">
+<span style="font-size: 12px; font-weight: 600; color: var(--fg2)">Import and open · sidebar + button</span>
+<div style="flex-grow: 1; position: relative; border-radius: 10px; overflow: hidden; background: var(--win); box-shadow: 0 0 0 1px var(--line2)">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 230px; background: var(--side); border-right: 1px solid var(--line); display: flex; flex-direction: column">
+<div style="flex-grow: 1"></div>
+<div style="height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 10px; border-top: 1px solid var(--line)">
+<button class="btn" aria-label="Import PCAP" aria-expanded="true" style="width: 28px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: var(--ctrl2); color: var(--fg)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 2v10M2 7h10"></path></svg></button>
+<span style="flex-grow: 1; height: 24px; border-radius: 6px; background: var(--ctrl)"></span>
+</div>
+</div>
+<div role="menu" aria-label="Import" style="position: absolute; left: 10px; bottom: 50px; width: 236px; display: flex; flex-direction: column; padding: 5px; border-radius: 9px; background: var(--menu); box-shadow: var(--mshadow); font-size: 13px">
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px; background: var(--sel); color: #FFFFFF">Import PCAP…<span style="flex-grow: 1"></span><span style="opacity: .8">⇧⌘I</span></button>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Open PCAP…<span style="flex-grow: 1"></span><span style="color: var(--fg3)">⌘O</span></button>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Open Recent<span style="flex-grow: 1"></span><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true" style="color: var(--fg3)"><path d="M3 1.5 7.5 5 3 8.5Z" fill="currentColor"></path></svg></button>
+<span style="height: 1px; background: var(--line2); margin: 5px 10px"></span>
+<button class="btn" role="menuitem" style="display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 5px">Import Folder of Captures…</button>
+</div>
+<div style="position: absolute; left: 258px; top: 22px; right: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: var(--fg2)">
+<span style="font-weight: 600; color: var(--fg)">Accepted formats</span>
+<span class="mono" style="font-size: 11.5px">.pcap  .pcapng  .cap</span>
+<span class="mono" style="font-size: 11.5px">.pcap.gz</span>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; min-height: 0">
+<span style="font-size: 12px; font-weight: 600; color: var(--fg2)">Drag and drop · files dropped anywhere on the window</span>
+<div style="flex-grow: 1; position: relative; border-radius: 10px; overflow: hidden; background: var(--win); box-shadow: 0 0 0 1px var(--line2)">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 110px; background: var(--side); border-right: 1px solid var(--line)"></div>
+<div style="position: absolute; left: 124px; top: 14px; right: 14px; bottom: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border-radius: 12px; border: 2px dashed var(--acc); background: var(--selsoft); text-align: center">
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="color: var(--acc)"><path d="M11 5h15l8 8v26H11z"></path><path d="M26 5v8h8"></path><path d="M22.5 19v12M17.5 26l5 5 5-5" stroke-linecap="round"></path></svg>
+<span style="font-size: 16px; font-weight: 600">Drop to Analyze</span>
+<span style="font-size: 12px; color: var(--fg2)">2 captures · branch-04.pcap, sbc-edge.pcapng</span>
+<span style="font-size: 11px; color: var(--fg3)">Each file opens as a new analysis</span>
+</div>
+<div style="position: absolute; left: 172px; top: 42px; display: flex; flex-direction: column; transform: rotate(-4deg)">
+<div style="width: 58px; height: 70px; border-radius: 6px; background: var(--surf2); box-shadow: 0 6px 18px rgba(0,0,0,.35), 0 0 0 1px var(--line2); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; box-sizing: border-box"><span class="mono" style="font-size: 9px; color: var(--fg2)">PCAP</span></div>
+</div>
+<span style="position: absolute; left: 222px; top: 38px; min-width: 20px; height: 20px; border-radius: 10px; background: #E5484D; color: #FFFFFF; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; min-height: 0">
+<span style="font-size: 12px; font-weight: 600; color: var(--fg2)">Rename in place · ↩ or double-click the name</span>
+<div style="flex-grow: 1; position: relative; border-radius: 10px; overflow: hidden; background: var(--win); box-shadow: 0 0 0 1px var(--line2)">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 260px; background: var(--side); border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; padding: 12px 10px; box-sizing: border-box">
+<span style="font-size: 11px; font-weight: 600; color: var(--fg3); padding: 0 8px 4px">Analyses</span>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 7px 8px"><span style="font-size: 13px">office-traffic.pcap</span><span style="font-size: 11px; color: var(--fg2)">24 calls · Today, 09:14</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 7px 8px; border-radius: 7px; background: var(--ctrl)">
+<label style="display: flex; flex-direction: column; gap: 0">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Analysis name</span>
+<span style="display: flex; align-items: center; height: 22px; padding: 0 5px; border-radius: 4px; background: var(--win); box-shadow: 0 0 0 3px var(--selsoft), 0 0 0 1px var(--sel); font-size: 13px"><span style="background: var(--sel); color: #FFFFFF; border-radius: 2px; padding: 0 1px">customer-call</span><span>.pcap</span><span style="width: 1px; height: 15px; background: var(--fg); margin-left: 1px"></span></span>
+</label>
+<span style="font-size: 11px; color: var(--fg2)">1 call · Yesterday, 16:40</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 7px 8px"><span style="font-size: 13px">branch-03.pcap</span><span style="font-size: 11px; color: var(--fg2)">8 calls · Sep 24</span></div>
+</div>
+<div style="position: absolute; left: 282px; top: 22px; right: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: var(--fg2)">
+<span style="display: flex; align-items: center; gap: 6px"><kbd style="font: inherit; font-size: 11px; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line2); color: var(--fg)">↩</kbd>Save</span>
+<span style="display: flex; align-items: center; gap: 6px"><kbd style="font: inherit; font-size: 11px; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line2); color: var(--fg)">esc</kbd>Cancel</span>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; min-height: 0">
+<span style="font-size: 12px; font-weight: 600; color: var(--fg2)">Delete confirmation · alert sheet</span>
+<div style="flex-grow: 1; position: relative; border-radius: 10px; overflow: hidden; background: var(--win); box-shadow: 0 0 0 1px var(--line2); display: flex; justify-content: center; align-items: flex-start">
+<div style="position: absolute; left: 0; top: 0; right: 0; height: 40px; background: var(--bar); border-bottom: 1px solid var(--line)"></div>
+<div role="alertdialog" aria-labelledby="del-title" style="position: relative; margin-top: 40px; width: 280px; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 16px 16px; box-sizing: border-box; border-radius: 12px; background: var(--menu); box-shadow: var(--mshadow); text-align: center">
+<div aria-hidden="true" style="width: 56px; height: 56px; border-radius: 13px; background: #16323A; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12)">
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h5l3-9 5 15 4-19 3 13h8" stroke="#6FD6DB" stroke-width="2.4"></path><circle cx="31" cy="22" r="2.2" fill="#6FD6DB"></circle></svg>
+</div>
+<span id="del-title" style="font-size: 13px; font-weight: 700">Delete “branch-03.pcap”?</span>
+<span style="font-size: 11.5px; line-height: 16px; color: var(--fg2); text-wrap: pretty">The analysis and its cached results will be removed from WirePath. The original capture file stays on disk.</span>
+<label style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--fg)"><input type="checkbox" style="margin: 0; accent-color: var(--sel)">Also move the capture file to the Trash</label>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; margin-top: 4px">
+<button class="btn" style="height: 28px; border-radius: 6px; background: var(--sel); color: #FFFFFF; font-size: 13px; text-align: center">Cancel</button>
+<button class="btn" style="height: 28px; border-radius: 6px; background: var(--ctrl2); color: var(--err); font-size: 13px; font-weight: 500; text-align: center">Delete</button>
+</div>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; min-height: 0">
+<span style="font-size: 12px; font-weight: 600; color: var(--fg2)">Keyboard shortcuts</span>
+<div role="table" aria-label="Keyboard shortcuts" style="flex-grow: 1; display: flex; flex-direction: column; padding: 8px 0; border-radius: 10px; background: var(--win); box-shadow: 0 0 0 1px var(--line2)">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="12">
+<div role="row" style="display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: center; height: 25px; padding: 0 18px; font-size: 12.5px">
+<span style="display: flex; gap: 4px"><kbd style="font: inherit; font-size: 11.5px; min-width: 14px; text-align: center; padding: 1px 6px; border-radius: 4px; background: var(--ctrl); box-shadow: inset 0 -1px 0 var(--line2)">{{k.key}}</kbd></span>
+<span style="color: var(--fg2)">{{k.label}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["Dark","Light"],"default":"Dark"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'Dark';
+    const K = [
+      ['⌘O', 'Open PCAP…'], ['⇧⌘I', 'Import PCAP…'], ['⌘1 – ⌘6', 'Overview · Calls · SIP · RTP · Timeline · Packets'],
+      ['↩', 'Investigate selected call'], ['⌘↑  ⌘↓', 'Previous / next call'], ['⌘[  ⌘]', 'Back / forward'],
+      ['⌘F', 'Search calls, numbers, IPs, Call-ID'], ['⌥⌘F', 'Edit display filter'], ['⇧⌘P', 'Show packets for selected call'],
+      ['Space', 'Play / pause call audio'], ['⌘W', 'Close analysis'], ['⌃⌘S', 'Show / hide sidebar']
+    ];
+    return { themeClass: theme === 'Light' ? 'light' : '', keys: K.map((k) => ({ key: k[0], label: k[1] })) };
+  }
+}
+</script>
+</body>
+</html>

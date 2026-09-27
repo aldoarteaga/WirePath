@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    # Apple Silicon runner: WirePath targets arm64 only.
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
+
+      - name: Pick an iPad simulator
+        # Full device name, e.g. "iPad Pro 13-inch (M5)": the chip in parentheses is part of it.
+        run: echo "IPAD=$(xcrun simctl list devices available | grep -m1 -E '^ +iPad' | sed -E 's/^ +//; s/ \([0-9A-F-]{36}\).*$//')" >> "$GITHUB_ENV"
+
+      - name: Core tests (WirePathCore)
+        working-directory: Packages/WirePathCore
+        run: swift test
+
+      - name: UI package tests (WirePathUI)
+        working-directory: Packages/WirePathUI
+        run: swift test
+
+      - name: Release builds and checks (sandbox, entitlements, privacy manifest, no Debug hooks)
+        run: scripts/release.sh check
+
+      - name: Localization catalogs complete
+        run: >
+          python3 scripts/check-localization.py Localization/Localizable.xcstrings
+          Packages/WirePathCore/Sources/WirePathCore/Resources/Localizable.xcstrings
+
+      - name: Build iPadOS app (simulator)
+        run: >
+          xcodebuild -project WirePath.xcodeproj -scheme WirePathiPad -configuration Debug
+          -destination 'generic/platform=iOS Simulator' -derivedDataPath build/DerivedData build
+
+      - name: Core tests on iPadOS simulator
+        working-directory: Packages/WirePathCore
+        run: >
+          xcodebuild test -scheme WirePathCore-Package
+          -destination "platform=iOS Simulator,name=$IPAD"
+          -derivedDataPath ../../build/DerivedDataCoreiOS
+
+      - name: UI package tests on iPadOS simulator
+        working-directory: Packages/WirePathUI
+        run: >
+          xcodebuild test -scheme WirePathUI
+          -destination "platform=iOS Simulator,name=$IPAD"
+          -derivedDataPath ../../build/DerivedDataUIiOS
+
+      - name: Benchmark smoke run (wpbench, release)
+        working-directory: Packages/WirePathCore
+        run: |
+          swift build -c release --product wpbench
+          .build/release/wpbench generate "$RUNNER_TEMP/bench.pcap" --packets 500000
+          .build/release/wpbench run "$RUNNER_TEMP/bench.pcap" --json "$RUNNER_TEMP/bench.json"
+
+      - name: iPadOS UI tests
+        run: >
+          xcodebuild test -project WirePath.xcodeproj -scheme WirePathiPad
+          -destination "platform=iOS Simulator,name=$IPAD"
+          -derivedDataPath build/DerivedData

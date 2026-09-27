@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WirePath — Call Investigation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.wp{--win:#1D1D20;--side:#252528;--bar:#1D1D20;--surf:#232326;--surf2:#2A2A2E;--line:rgba(255,255,255,.075);--line2:rgba(255,255,255,.14);--fg:#ECECEF;--fg2:#A9A9B0;--fg3:#8B8B93;--sel:#1D63D6;--selsoft:rgba(77,148,255,.16);--acc:#5AA2FF;--stripe:rgba(255,255,255,.028);--ok:#52C58F;--warn:#E8A33D;--err:#F26C5F;--okbg:rgba(82,197,143,.13);--warnbg:rgba(232,163,61,.13);--errbg:rgba(242,108,95,.14);--ctrl:rgba(255,255,255,.08);--ctrl2:rgba(255,255,255,.13);--grid:rgba(255,255,255,.07);--m1:#4CC4CB;--m2:#A594F5;--m1bg:rgba(76,196,203,.13);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.wp.light{--win:#FFFFFF;--side:#EDEDF0;--bar:#FFFFFF;--surf:#FFFFFF;--surf2:#F5F5F7;--line:rgba(0,0,0,.085);--line2:rgba(0,0,0,.15);--fg:#1D1D1F;--fg2:#5E5E65;--fg3:#6C6C73;--sel:#0A64D8;--selsoft:rgba(10,100,216,.10);--acc:#0A64D8;--stripe:rgba(0,0,0,.025);--ok:#1C8A4E;--warn:#A86400;--err:#C63A2F;--okbg:rgba(28,138,78,.10);--warnbg:rgba(200,120,0,.11);--errbg:rgba(198,58,47,.10);--ctrl:rgba(0,0,0,.055);--ctrl2:rgba(0,0,0,.09);--grid:rgba(0,0,0,.07);--m1:#0E8F97;--m2:#6A52D9;--m1bg:rgba(14,143,151,.10)}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.btn{appearance:none;border:0;background:none;color:inherit;font:inherit;padding:0;margin:0;text-align:left;cursor:default}
+.gx{stroke:var(--win)}
+svg text{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif}
+svg .mt{font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.t1{fill:var(--fg)}.t2{fill:var(--fg2)}.t3{fill:var(--fg3)}.tok{fill:var(--ok)}.twarn{fill:var(--warn)}.terr{fill:var(--err)}
+.ln{stroke:var(--fg2);stroke-width:1.2;fill:none}.lnd{stroke:var(--fg3);stroke-width:1.1;stroke-dasharray:4 3;fill:none}
+.ar1{fill:var(--fg2)}.ar3{fill:var(--fg3)}
+.life{stroke:var(--line2);stroke-width:1}
+.box{fill:var(--surf2);stroke:var(--line2)}
+.fsel{fill:var(--selsoft)}.fm1bg{fill:var(--m1bg)}.fsurf{fill:var(--surf)}
+.sm1{stroke:var(--m1)}.sm2{stroke:var(--m2)}.fm1{fill:var(--m1)}.fm2{fill:var(--m2)}
+.gridl{stroke:var(--grid);stroke-width:1}.thr{stroke:var(--warn);stroke-width:1;stroke-dasharray:3 3}
+.fwarn{fill:var(--warn)}
+</style>
+</helmet>
+<div class="wp {{themeClass}}" style="width: 1440px; height: 1280px; display: flex; background: var(--win); color: var(--fg); border-radius: 12px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line2); font-size: 13px">
+
+<nav aria-label="Analyses" style="width: 256px; flex-shrink: 0; display: flex; flex-direction: column; background: var(--side); border-right: 1px solid var(--line)">
+<div style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 10px 0 18px">
+<div style="display: flex; gap: 8px">
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.25)"></span>
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.25)"></span>
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,.25)"></span>
+</div>
+<div style="flex-grow: 1"></div>
+<button class="btn" aria-label="Hide Sidebar (⌃⌘S)" style="width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3.5" width="14" height="11" rx="2.5"></rect><path d="M7 3.5v11"></path></svg></button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; padding: 2px 10px; overflow: hidden">
+<div style="display: flex; align-items: center; padding: 6px 8px 4px"><span style="font-size: 11px; font-weight: 600; color: var(--fg3)">Analyses</span><div style="flex-grow: 1"></div><span style="font-size: 11px; color: var(--fg3)">5</span></div>
+
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px; background: var(--ctrl)">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13px; font-weight: 600">office-traffic.pcap</span>
+<span style="font-size: 11px; color: var(--fg2)">24 calls · Today, 09:14</span>
+<span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--warn)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path><path class="gx" d="M6 4.3v3.1M6 8.9v.05" stroke-width="1.4" stroke-linecap="round"></path></svg>3 SIP errors</span>
+</span>
+</button>
+<div style="display: flex; flex-direction: column; gap: 1px; padding: 2px 0 6px 22px">
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="color: var(--acc)"><rect x="2" y="2" width="5" height="5" rx="1.3"></rect><rect x="9" y="2" width="5" height="5" rx="1.3"></rect><rect x="2" y="9" width="5" height="5" rx="1.3"></rect><rect x="9" y="9" width="5" height="5" rx="1.3"></rect></svg>
+<span style="flex-grow: 1">Overview</span><span style="font-size: 11px; color: var(--fg3)">⌘1</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px; background: var(--sel); color: #FFFFFF">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4.6 2.2 6.3 2.7l.8 2.5-1.2 1.1a7 7 0 0 0 3.8 3.8l1.1-1.2 2.5.8.5 1.7c-.2.9-1 1.6-1.9 1.6C6.7 13 3 9.3 3 4.1c0-.9.7-1.7 1.6-1.9Z" stroke-linejoin="round"></path></svg>
+<span style="flex-grow: 1">Calls</span><span style="font-size: 11px; opacity: .75">24</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--acc)"><path d="M2.5 5.5h10M10 3l2.5 2.5L10 8M13.5 10.5h-10M6 8l-2.5 2.5L6 13"></path></svg>
+<span style="flex-grow: 1">SIP Dialogs</span><span style="font-size: 11px; color: var(--fg3)">26</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true" style="color: var(--acc)"><path d="M2 8h1M4.7 5.5v5M7.2 2.8v10.4M9.7 5v6M12.2 6.5v3M14 8h0"></path></svg>
+<span style="flex-grow: 1">RTP Streams</span><span style="font-size: 11px; color: var(--fg3)">42</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" style="color: var(--acc)"><path d="M2 13.5h12"></path><path d="M3 4h4.5M5 7.2h6.5M8 10.4h5"></path></svg>
+<span style="flex-grow: 1">Timeline</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 6px">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" style="color: var(--acc)"><rect x="2" y="2.5" width="12" height="11" rx="2"></rect><path d="M4.8 6h6.4M4.8 8.3h6.4M4.8 10.6h3.6"></path></svg>
+<span style="flex-grow: 1">Packets</span><span style="font-size: 11px; color: var(--fg3)">1.2M</span>
+</button>
+</div>
+
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13px">customer-call.pcap</span>
+<span style="font-size: 11px; color: var(--fg2)">1 call · Yesterday, 16:40</span>
+<span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--warn)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path><path class="gx" d="M6 4.3v3.1M6 8.9v.05" stroke-width="1.4" stroke-linecap="round"></path></svg>Packet loss 2.9%</span>
+</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13px">branch-03.pcap</span>
+<span style="font-size: 11px; color: var(--fg2)">8 calls · Sep 24</span>
+<span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--fg2)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0; color: var(--ok)"><circle cx="6" cy="6" r="5.2" fill="currentColor"></circle><path class="gx" d="m3.6 6.1 1.7 1.7 3.2-3.4" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>No issues</span>
+</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; color: var(--fg3)"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--acc)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13px">troubleshooting.pcap</span>
+<span style="font-size: 11px; color: var(--fg2)">12 calls · Sep 22</span>
+<span style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--err)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="flex-shrink: 0"><path d="M4 .8h4L11.2 4v4L8 11.2H4L.8 8V4Z" fill="currentColor"></path><path class="gx" d="M6 3.4v3.2M6 8.5v.05" stroke-width="1.4" stroke-linecap="round"></path></svg>One-way audio · 2 calls</span>
+</span>
+</button>
+<button class="btn" style="width: 100%; box-sizing: border-box; display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border-radius: 7px">
+<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" style="margin-top: 4px; flex-shrink: 0; opacity: 0"><path d="M3.5 2 6.5 5 3.5 8" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: var(--fg3)"><path d="M3.5 1.8h5.8l3.2 3.2v9.2h-9z" stroke-linejoin="round"></path><path d="M9.3 1.8V5h3.2"></path><path d="M5.6 10.5V9.5M7.4 12V8M9.2 11V9.2M11 10.4v-.6" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13px; color: var(--fg2)">trunk-failover.pcapng</span>
+<span style="font-size: 11px; color: var(--fg2)">Analyzing… 62% · 3.4M packets</span>
+<span style="height: 4px; border-radius: 2px; background: var(--ctrl2); overflow: hidden; display: flex"><span style="width: 62%; background: var(--acc); border-radius: 2px"></span></span>
+</span>
+</button>
+</div>
+<div style="height: 44px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 10px; border-top: 1px solid var(--line)">
+<button class="btn" aria-label="Import PCAP (⇧⌘I)" style="width: 28px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 2v10M2 7h10"></path></svg></button>
+<label style="flex-grow: 1; height: 24px; display: flex; align-items: center; gap: 6px; padding: 0 8px; border-radius: 6px; background: var(--ctrl); color: var(--fg3)">
+<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"></circle><path d="m10.5 10.5 3.3 3.3"></path></svg>
+<input aria-label="Filter analyses" placeholder="Filter" style="border: 0; background: transparent; color: var(--fg); font: inherit; font-size: 12px; outline: none; width: 100%; padding: 0">
+</label>
+</div>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 14px 0 12px; border-bottom: 1px solid var(--line); background: var(--bar)">
+<div style="display: flex; gap: 2px">
+<button class="btn" aria-label="Back to Calls (⌘[)" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.8 2.5 4.3 7l4.5 4.5"></path></svg></button>
+<button class="btn" aria-label="Forward (⌘])" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg3); opacity: .5"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 2.5 9.7 7l-4.5 4.5"></path></svg></button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 13px; font-weight: 600">Call 09:42:15</span>
+<span style="font-size: 11px; color: var(--fg2)">office-traffic.pcap · Call 4 of 24</span>
+</div>
+<div style="flex-grow: 1"></div>
+<div style="display: flex; border-radius: 7px; background: var(--ctrl)">
+<button class="btn" aria-label="Previous Call (⌘↑)" style="width: 32px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--fg2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.8 7 4.3l4.5 4.5"></path></svg></button>
+<span style="width: 1px; background: var(--line2); margin: 6px 0"></span>
+<button class="btn" aria-label="Next Call (⌘↓)" style="width: 32px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--fg2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 5.2 7 9.7l4.5-4.5"></path></svg></button>
+</div>
+<button class="btn" style="height: 28px; display: flex; align-items: center; gap: 6px; padding: 0 10px; border-radius: 7px; background: var(--ctrl); font-size: 12.5px"><svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true" style="color: var(--fg2)"><path d="M4 2.5v9l7.5-4.5z" fill="currentColor"></path></svg>Play Audio</button>
+<button class="btn" style="height: 28px; display: flex; align-items: center; gap: 6px; padding: 0 10px; border-radius: 7px; background: var(--ctrl); font-size: 12.5px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" style="color: var(--fg2)"><rect x="2" y="2.5" width="12" height="11" rx="2"></rect><path d="M4.8 6h6.4M4.8 8.3h6.4M4.8 10.6h3.6"></path></svg>Show Packets</button>
+<button class="btn" aria-label="Export Call Report (⇧⌘E)" style="width: 34px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M6 5.3 9 2.5l3 2.8"></path><path d="M6 7.5H4.5v8h9v-8H12"></path></svg></button>
+<label style="width: 220px; height: 28px; display: flex; align-items: center; gap: 7px; padding: 0 9px; box-sizing: border-box; border-radius: 7px; background: var(--ctrl); color: var(--fg3)">
+<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"></circle><path d="m10.5 10.5 3.3 3.3"></path></svg>
+<input aria-label="Search in call" placeholder="Search in call" style="border: 0; background: transparent; color: var(--fg); font: inherit; font-size: 13px; outline: none; width: 100%; padding: 0">
+</label>
+</header>
+
+<div style="flex-grow: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding: 18px 22px 16px; overflow: hidden">
+
+<div style="display: flex; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.2px; display: flex; align-items: center; gap: 10px">1003 <span style="font-weight: 400; color: var(--fg2)">Soporte N1</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-label="to" style="color: var(--fg3)"><path d="M2.5 8h11M9.5 4l4 4-4 4"></path></svg>1008 <span style="font-weight: 400; color: var(--fg2)">Soporte N2</span></h1>
+<div style="display: flex; gap: 6px; font-size: 11.5px">
+<span style="display: flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 6px; background: var(--warnbg); color: var(--warn); font-weight: 600"><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path></svg>Fair · MOS 3.91</span>
+<span style="padding: 3px 8px; border-radius: 6px; background: var(--ctrl); color: var(--fg2)">200 OK · BYE from caller</span>
+<span class="mono" style="padding: 3px 8px; border-radius: 6px; background: var(--ctrl); color: var(--fg2); font-size: 11px">G.729 · 20 ms</span>
+<span style="padding: 3px 8px; border-radius: 6px; background: var(--ctrl); color: var(--fg2)">Direct media</span>
+</div>
+</div>
+<div style="flex-grow: 1"></div>
+<div role="tablist" aria-label="Jump to section" style="display: flex; padding: 2px; border-radius: 7px; background: var(--ctrl)">
+<button class="btn" role="tab" aria-selected="true" style="padding: 3px 12px; border-radius: 5px; font-size: 12px; background: var(--ctrl2); box-shadow: 0 1px 2px rgba(0,0,0,.18)">Summary</button>
+<button class="btn" role="tab" aria-selected="false" style="padding: 3px 12px; border-radius: 5px; font-size: 12px; color: var(--fg2)">SIP Flow</button>
+<button class="btn" role="tab" aria-selected="false" style="padding: 3px 12px; border-radius: 5px; font-size: 12px; color: var(--fg2)">RTP</button>
+<button class="btn" role="tab" aria-selected="false" style="padding: 3px 12px; border-radius: 5px; font-size: 12px; color: var(--fg2)">Timeline</button>
+</div>
+</div>
+
+<section aria-label="Call Summary" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: 14px; column-gap: 20px; padding: 14px 18px; background: var(--surf); border: 1px solid var(--line); border-radius: 10px">
+<div style="grid-column: span 2; display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Call-ID</span>
+<div style="display: flex; align-items: center; gap: 8px"><span class="mono" style="font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">7f3a9c21-4be0-4d1e-9a2f-51c8e0b7d6a4@10.20.1.23</span><button class="btn" aria-label="Copy Call-ID" style="color: var(--fg3); display: flex"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4.5" y="4.5" width="7.5" height="7.5" rx="1.5"></rect><path d="M9.5 4.5V3.2c0-.8-.6-1.4-1.4-1.4H3.2c-.8 0-1.4.6-1.4 1.4v4.9c0 .8.6 1.4 1.4 1.4h1.3"></path></svg></button></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Caller</span><span style="font-size: 13px">1003 · Soporte N1</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Callee</span><span style="font-size: 13px">1008 · Soporte N2</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Codec</span><span style="font-size: 13px">G.729 <span style="color: var(--fg3)">· PT 18 · 8 kHz</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Start</span><span style="font-size: 13px">09:42:15.218</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">End</span><span style="font-size: 13px">09:43:32.604</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Duration</span><span style="font-size: 13px">01:17.386 <span style="color: var(--fg3)">· setup 3.84 s</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Source IP</span><span class="mono" style="font-size: 12.5px">10.20.1.23:5060</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 500; color: var(--fg2)">Destination IP</span><span class="mono" style="font-size: 12.5px">10.20.1.28:5060</span></div>
+</section>
+
+<div style="display: flex; gap: 14px; height: 540px">
+<section aria-label="SIP Flow" style="width: 620px; flex-shrink: 0; display: flex; flex-direction: column; background: var(--surf); border: 1px solid var(--line); border-radius: 10px; overflow: hidden">
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 14px; border-bottom: 1px solid var(--line)">
+<span style="font-size: 13px; font-weight: 600">SIP Flow</span>
+<span style="font-size: 11px; color: var(--fg3)">14 messages · 3 participants</span>
+<div style="flex-grow: 1"></div>
+<label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--fg2)"><input type="checkbox" checked="" style="margin: 0; accent-color: var(--sel)">Show SDP</label>
+<button class="btn" aria-label="Export Ladder Diagram" style="width: 28px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: var(--fg2)"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M6 5.3 9 2.5l3 2.8"></path><path d="M6 7.5H4.5v8h9v-8H12"></path></svg></button>
+</div>
+<div style="padding: 10px 16px 0">
+<svg width="588" height="480" viewBox="0 0 588 480" role="img" aria-label="SIP ladder diagram: INVITE, 100 Trying, 180 Ringing, 200 OK, ACK, RTP media, BYE, 200 OK">
+<text class="t3" x="6" y="30" font-size="10.5" font-weight="500">Time (s)</text>
+<rect class="box" x="92" y="6" width="116" height="40" rx="8"></rect>
+<text class="t1" x="150" y="23" font-size="12" font-weight="600" text-anchor="middle">1003 · Caller</text>
+<text class="t3 mt" x="150" y="38" font-size="10.5" text-anchor="middle">10.20.1.23</text>
+<rect class="box" x="282" y="6" width="116" height="40" rx="8"></rect>
+<text class="t1" x="340" y="23" font-size="12" font-weight="600" text-anchor="middle">SIP Server</text>
+<text class="t3 mt" x="340" y="38" font-size="10.5" text-anchor="middle">10.20.0.5</text>
+<rect class="box" x="470" y="6" width="116" height="40" rx="8"></rect>
+<text class="t1" x="528" y="23" font-size="12" font-weight="600" text-anchor="middle">1008 · Callee</text>
+<text class="t3 mt" x="528" y="38" font-size="10.5" text-anchor="middle">10.20.1.28</text>
+<path class="life" d="M150 46V476M340 46V312M340 352V476M528 46V476"></path>
+<path class="life" d="M340 312V352" stroke-dasharray="2 3"></path>
+
+<rect class="fsel" x="0" y="68" width="588" height="22" rx="5"></rect>
+
+<text class="t3 mt" x="6" y="86" font-size="10.5">0.000</text>
+<path class="ln" d="M151 82H333"></path><path class="ar1" d="M340 82 333 78.5V85.5Z"></path>
+<text x="245" y="77" font-size="11" text-anchor="middle"><tspan class="t1" font-weight="600">INVITE</tspan><tspan class="t3" dx="4" font-size="10">SDP</tspan></text>
+
+<text class="t3 mt" x="6" y="110" font-size="10.5">0.002</text>
+<path class="lnd" d="M339 106H157"></path><path class="ar3" d="M150 106 157 102.5V109.5Z"></path>
+<text class="t2" x="245" y="101" font-size="11" text-anchor="middle">100 Trying</text>
+
+<text class="t3 mt" x="6" y="134" font-size="10.5">0.004</text>
+<path class="ln" d="M341 130H521"></path><path class="ar1" d="M528 130 521 126.5V133.5Z"></path>
+<text x="434" y="125" font-size="11" text-anchor="middle"><tspan class="t1" font-weight="600">INVITE</tspan><tspan class="t3" dx="4" font-size="10">SDP</tspan></text>
+
+<text class="t3 mt" x="6" y="158" font-size="10.5">0.019</text>
+<path class="lnd" d="M527 154H347"></path><path class="ar3" d="M340 154 347 150.5V157.5Z"></path>
+<text class="t2" x="434" y="149" font-size="11" text-anchor="middle">100 Trying</text>
+
+<text class="t3 mt" x="6" y="182" font-size="10.5">0.212</text>
+<path class="lnd" d="M527 178H347"></path><path class="ar3" d="M340 178 347 174.5V181.5Z"></path>
+<text class="t2" x="434" y="173" font-size="11" text-anchor="middle">180 Ringing</text>
+
+<text class="t3 mt" x="6" y="206" font-size="10.5">0.214</text>
+<path class="lnd" d="M339 202H157"></path><path class="ar3" d="M150 202 157 198.5V205.5Z"></path>
+<text class="t2" x="245" y="197" font-size="11" text-anchor="middle">180 Ringing</text>
+
+<text class="t3 mt" x="6" y="230" font-size="10.5">3.841</text>
+<path class="lnd" d="M527 226H347"></path><path class="ar3" d="M340 226 347 222.5V229.5Z"></path>
+<text x="434" y="221" font-size="11" text-anchor="middle"><tspan class="tok" font-weight="600">200 OK</tspan><tspan class="t3" dx="4" font-size="10">SDP</tspan></text>
+
+<text class="t3 mt" x="6" y="254" font-size="10.5">3.843</text>
+<path class="lnd" d="M339 250H157"></path><path class="ar3" d="M150 250 157 246.5V253.5Z"></path>
+<text x="245" y="245" font-size="11" text-anchor="middle"><tspan class="tok" font-weight="600">200 OK</tspan><tspan class="t3" dx="4" font-size="10">SDP</tspan></text>
+
+<text class="t3 mt" x="6" y="278" font-size="10.5">3.861</text>
+<path class="ln" d="M151 274H333"></path><path class="ar1" d="M340 274 333 270.5V277.5Z"></path>
+<text class="t1" x="245" y="269" font-size="11" font-weight="600" text-anchor="middle">ACK</text>
+
+<text class="t3 mt" x="6" y="302" font-size="10.5">3.863</text>
+<path class="ln" d="M341 298H521"></path><path class="ar1" d="M528 298 521 294.5V301.5Z"></path>
+<text class="t1" x="434" y="293" font-size="11" font-weight="600" text-anchor="middle">ACK</text>
+
+<text class="t3 mt" x="6" y="330" font-size="10.5">3.880</text>
+<text class="t3 mt" x="6" y="346" font-size="10.5">77.310</text>
+<rect class="fm1bg" x="150" y="316" width="378" height="32" rx="5"></rect>
+<path class="sm1" d="M152 323H520" stroke-width="2" fill="none"></path><path class="fm1" d="M528 323 520 319V327Z"></path>
+<path class="sm2" d="M526 341H158" stroke-width="2" fill="none"></path><path class="fm2" d="M150 341 158 337V345Z"></path>
+<rect class="fsurf" x="262" y="326" width="156" height="12" rx="3"></rect>
+<text class="t1" x="340" y="336" font-size="10.5" font-weight="600" text-anchor="middle">RTP · G.729 · 73.4 s · 7,343 pkts</text>
+
+<text class="t3 mt" x="6" y="390" font-size="10.5">77.352</text>
+<path class="ln" d="M151 386H333"></path><path class="ar1" d="M340 386 333 382.5V389.5Z"></path>
+<text class="t1" x="245" y="381" font-size="11" font-weight="600" text-anchor="middle">BYE</text>
+
+<text class="t3 mt" x="6" y="414" font-size="10.5">77.354</text>
+<path class="ln" d="M341 410H521"></path><path class="ar1" d="M528 410 521 406.5V413.5Z"></path>
+<text class="t1" x="434" y="405" font-size="11" font-weight="600" text-anchor="middle">BYE</text>
+
+<text class="t3 mt" x="6" y="438" font-size="10.5">77.381</text>
+<path class="lnd" d="M527 434H347"></path><path class="ar3" d="M340 434 347 430.5V437.5Z"></path>
+<text class="tok" x="434" y="429" font-size="11" font-weight="600" text-anchor="middle">200 OK</text>
+
+<text class="t3 mt" x="6" y="462" font-size="10.5">77.383</text>
+<path class="lnd" d="M339 458H157"></path><path class="ar3" d="M150 458 157 454.5V461.5Z"></path>
+<text class="tok" x="245" y="453" font-size="11" font-weight="600" text-anchor="middle">200 OK</text>
+</svg>
+</div>
+</section>
+
+<section aria-label="RTP Analysis" style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; background: var(--surf); border: 1px solid var(--line); border-radius: 10px; overflow: hidden">
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 14px; border-bottom: 1px solid var(--line)">
+<span style="font-size: 13px; font-weight: 600">RTP Analysis</span>
+<span style="font-size: 11px; color: var(--fg3)">2 streams · direct media</span>
+</div>
+<div role="table" aria-label="RTP streams" style="display: flex; flex-direction: column; padding: 4px 0">
+<div role="row" style="display: grid; grid-template-columns: 148px minmax(0, 1fr) minmax(0, 1fr); align-items: center; height: 30px; padding: 0 14px; font-size: 11.5px; font-weight: 600; color: var(--fg2); border-bottom: 1px solid var(--line)">
+<span>Field</span>
+<span style="display: flex; align-items: center; gap: 6px; color: var(--fg)"><span style="width: 10px; height: 3px; border-radius: 2px; background: var(--m1)"></span>1003 → 1008</span>
+<span style="display: flex; align-items: center; gap: 6px; color: var(--fg)"><span style="width: 10px; height: 3px; border-radius: 2px; background: var(--m2)"></span>1008 → 1003</span>
+</div>
+<sc-for list="{{rtp}}" as="f" hint-placeholder-count="14">
+<div role="row" style="display: grid; grid-template-columns: 148px minmax(0, 1fr) minmax(0, 1fr); align-items: center; height: 25px; padding: 0 14px; font-size: 12px; background: {{f.bg}}">
+<span style="color: var(--fg2)">{{f.k}}</span>
+<span class="{{f.cls}}" style="color: {{f.ca}}; font-weight: {{f.wa}}">{{f.a}}</span>
+<span class="{{f.cls}}" style="color: {{f.cb}}; font-weight: {{f.wb}}">{{f.b}}</span>
+</div>
+</sc-for>
+</div>
+<div style="flex-grow: 1"></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--line); font-size: 12px">
+<div style="display: flex; align-items: center; gap: 8px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="color: var(--warn); flex-shrink: 0"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path><path class="gx" d="M6 4.3v3.1M6 8.9v.05" stroke-width="1.4" stroke-linecap="round"></path></svg><span>Loss burst at <span class="mono" style="font-size: 11.5px">+52.4 – 55.1 s</span></span><span style="color: var(--fg2)">· 31 packets, both directions</span></div>
+<div style="display: flex; align-items: center; gap: 8px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="color: var(--acc); flex-shrink: 0"><circle cx="6" cy="6" r="5.2" fill="currentColor"></circle><path class="gx" d="M6 5.4v3M6 3.6v.05" stroke-width="1.4" stroke-linecap="round"></path></svg><span>SSRC change on 1008 → 1003 at <span class="mono" style="font-size: 11.5px">+44.210 s</span></span><span style="color: var(--fg2)">· no re-INVITE</span></div>
+</div>
+</section>
+</div>
+
+<div style="display: flex; gap: 14px; height: 214px">
+<section aria-label="Jitter chart" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; background: var(--surf); border: 1px solid var(--line); border-radius: 10px; overflow: hidden">
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; padding: 0 14px">
+<span style="font-size: 13px; font-weight: 600">Jitter</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg2)"><span style="width: 12px; height: 2px; background: var(--m1)"></span>1003 → 1008</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg2)"><span style="width: 12px; height: 2px; background: var(--m2)"></span>1008 → 1003</span>
+<div style="flex-grow: 1"></div>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg3)"><span style="width: 12px; border-top: 1px dashed var(--warn)"></span>30 ms threshold</span>
+</div>
+<svg width="531" height="156" viewBox="0 0 531 156" role="img" aria-label="Jitter over time, peak 48.2 ms at 31 s" style="margin: 0 16px">
+<path class="gridl" d="M30 10H525M30 49.3H525M30 88.7H525M30 128H525"></path>
+<text class="t3" x="24" y="13" font-size="10" text-anchor="end">60</text>
+<text class="t3" x="24" y="52" font-size="10" text-anchor="end">40</text>
+<text class="t3" x="24" y="92" font-size="10" text-anchor="end">20</text>
+<text class="t3" x="24" y="131" font-size="10" text-anchor="end">0</text>
+<path class="thr" d="M30 69H525"></path>
+<path class="sm2" d="{{jitB}}" fill="none" stroke-width="1.3" stroke-linejoin="round"></path>
+<path class="sm1" d="{{jitA}}" fill="none" stroke-width="1.4" stroke-linejoin="round"></path>
+<circle class="fwarn" cx="229.5" cy="33.3" r="3"></circle>
+<text class="twarn" x="236" y="30" font-size="10.5" font-weight="600">48.2 ms</text>
+<text class="t3" x="30" y="146" font-size="10">0 s</text>
+<text class="t3" x="125.9" y="146" font-size="10" text-anchor="middle">15</text>
+<text class="t3" x="221.9" y="146" font-size="10" text-anchor="middle">30</text>
+<text class="t3" x="317.8" y="146" font-size="10" text-anchor="middle">45</text>
+<text class="t3" x="413.7" y="146" font-size="10" text-anchor="middle">60</text>
+<text class="t3" x="509.6" y="146" font-size="10" text-anchor="middle">75 s</text>
+</svg>
+</section>
+<section aria-label="Packet loss chart" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; background: var(--surf); border: 1px solid var(--line); border-radius: 10px; overflow: hidden">
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; padding: 0 14px">
+<span style="font-size: 13px; font-weight: 600">Packet Loss</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg2)"><span style="width: 8px; height: 8px; border-radius: 2px; background: var(--m1)"></span>1003 → 1008 · 58</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg2)"><span style="width: 8px; height: 8px; border-radius: 2px; background: var(--m2)"></span>1008 → 1003 · 46</span>
+<div style="flex-grow: 1"></div>
+<span style="font-size: 11px; color: var(--fg3)">lost packets / second</span>
+</div>
+<svg width="531" height="156" viewBox="0 0 531 156" role="img" aria-label="Packets lost per second, burst between 52 and 55 seconds" style="margin: 0 16px">
+<path class="gridl" d="M30 10H525M30 49.3H525M30 88.7H525M30 128H525"></path>
+<text class="t3" x="24" y="13" font-size="10" text-anchor="end">15</text>
+<text class="t3" x="24" y="52" font-size="10" text-anchor="end">10</text>
+<text class="t3" x="24" y="92" font-size="10" text-anchor="end">5</text>
+<text class="t3" x="24" y="131" font-size="10" text-anchor="end">0</text>
+<path class="fm1" d="{{lossA}}"></path>
+<path class="fm2" d="{{lossB}}"></path>
+<text class="t1" x="392" y="24" font-size="10.5" font-weight="600">Burst · 31 pkts</text>
+<text class="t3" x="392" y="37" font-size="10">+52.4 – 55.1 s</text>
+<text class="t3" x="30" y="146" font-size="10">0 s</text>
+<text class="t3" x="125.9" y="146" font-size="10" text-anchor="middle">15</text>
+<text class="t3" x="221.9" y="146" font-size="10" text-anchor="middle">30</text>
+<text class="t3" x="317.8" y="146" font-size="10" text-anchor="middle">45</text>
+<text class="t3" x="413.7" y="146" font-size="10" text-anchor="middle">60</text>
+<text class="t3" x="509.6" y="146" font-size="10" text-anchor="middle">75 s</text>
+</svg>
+</section>
+</div>
+
+<section aria-label="Timeline" style="display: flex; flex-direction: column; background: var(--surf); border: 1px solid var(--line); border-radius: 10px; overflow: hidden">
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--line)">
+<span style="font-size: 13px; font-weight: 600">Timeline</span>
+<span class="mono" style="font-size: 11px; color: var(--fg3)">09:42:15.218 – 09:43:32.604</span>
+<div style="flex-grow: 1"></div>
+<button class="btn" aria-label="Zoom Out (⌘−)" style="width: 24px; height: 22px; display: flex; align-items: center; justify-content: center; color: var(--fg2)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 6h8"></path></svg></button>
+<input type="range" aria-label="Timeline zoom" min="1" max="10" value="1" style="width: 110px; accent-color: var(--sel)">
+<button class="btn" aria-label="Zoom In (⌘+)" style="width: 24px; height: 22px; display: flex; align-items: center; justify-content: center; color: var(--fg2)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 6h8M6 2v8"></path></svg></button>
+<button class="btn" style="height: 22px; padding: 0 9px; border-radius: 5px; background: var(--ctrl); font-size: 11.5px">Fit</button>
+</div>
+<div style="display: flex; padding: 10px 16px 14px">
+<div style="width: 120px; flex-shrink: 0; display: flex; flex-direction: column; font-size: 11px; color: var(--fg2)">
+<span style="height: 20px"></span>
+<span style="height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--fg)">SIP</span>
+<span style="height: 24px; display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: var(--m1)"></span>RTP 1003 → 1008</span>
+<span style="height: 24px; display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: var(--m2)"></span>RTP 1008 → 1003</span>
+<span style="height: 34px; display: flex; align-items: center; font-weight: 600; color: var(--fg)">Events</span>
+</div>
+<div style="position: relative; width: 988px; height: 146px">
+<div style="position: absolute; left: 0; top: 0; width: 988px; height: 20px; font-size: 10.5px; color: var(--fg3)">
+<span class="mono" style="position: absolute; left: 0; top: 0">09:42:15</span>
+<span class="mono" style="position: absolute; left: 127.6px; top: 0; transform: translateX(-50%)">:25</span>
+<span class="mono" style="position: absolute; left: 255.3px; top: 0; transform: translateX(-50%)">:35</span>
+<span class="mono" style="position: absolute; left: 383px; top: 0; transform: translateX(-50%)">:45</span>
+<span class="mono" style="position: absolute; left: 510.6px; top: 0; transform: translateX(-50%)">:55</span>
+<span class="mono" style="position: absolute; left: 638.3px; top: 0; transform: translateX(-50%)">09:43:05</span>
+<span class="mono" style="position: absolute; left: 765.9px; top: 0; transform: translateX(-50%)">:15</span>
+<span class="mono" style="position: absolute; left: 893.6px; top: 0; transform: translateX(-50%)">:25</span>
+</div>
+<div style="position: absolute; left: 0; top: 18px; width: 988px; height: 128px; background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px); background-size: 127.65px 100%"></div>
+<div style="position: absolute; left: 668.9px; top: 18px; width: 34.5px; height: 128px; background: var(--errbg); border-left: 1px solid var(--err); border-right: 1px solid var(--err); box-sizing: border-box"></div>
+<div style="position: absolute; left: 398.3px; top: 18px; height: 128px; border-left: 1px dashed var(--warn)"></div>
+<div style="position: absolute; left: 564.3px; top: 18px; height: 128px; border-left: 1px dashed var(--acc)"></div>
+
+<div style="position: absolute; left: 0; top: 24px; height: 36px; border-left: 2px solid var(--fg2)"></div>
+<span style="position: absolute; left: 6px; top: 24px; font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 4px; background: var(--ctrl2)">INVITE</span>
+<div style="position: absolute; left: 2.7px; top: 40px; height: 20px; border-left: 1px solid var(--fg3)"></div>
+<div style="position: absolute; left: 49px; top: 24px; height: 36px; border-left: 2px solid var(--ok)"></div>
+<span style="position: absolute; left: 55px; top: 42px; font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 4px; background: var(--okbg); color: var(--ok)">200 OK · ACK</span>
+<div style="position: absolute; left: 986px; top: 24px; height: 36px; border-left: 2px solid var(--fg2)"></div>
+<span style="position: absolute; right: 8px; top: 24px; font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 4px; background: var(--ctrl2)">BYE · 200 OK</span>
+
+<div style="position: absolute; left: 49.5px; top: 71px; width: 937.4px; height: 10px; border-radius: 3px; background: var(--m1); opacity: .85"></div>
+<div style="position: absolute; left: 49.5px; top: 95px; width: 514px; height: 10px; border-radius: 3px 0 0 3px; background: var(--m2); opacity: .85"></div>
+<div style="position: absolute; left: 566.3px; top: 95px; width: 420.6px; height: 10px; border-radius: 0 3px 3px 0; background: var(--m2); opacity: .85"></div>
+<sc-for list="{{lossTicks}}" as="k" hint-placeholder-count="8">
+<div style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: 2px; height: 14px; border-radius: 1px; background: var(--err)"></div>
+</sc-for>
+
+<span style="position: absolute; left: 49.5px; top: 119px; display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--fg2)"><svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true" style="color: var(--m1)"><path d="M0 0 8 5 0 10Z" fill="currentColor"></path></svg>RTP start</span>
+<span style="position: absolute; left: 404px; top: 119px; display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--warn); font-weight: 600; transform: translateX(-10px)"><svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11.3 10.6H.7Z" fill="currentColor"></path></svg>Jitter 48 ms</span>
+<span style="position: absolute; left: 570px; top: 119px; display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--acc); font-weight: 600"><svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="currentColor"></circle></svg>SSRC change</span>
+<span style="position: absolute; left: 709px; top: 119px; display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--err); font-weight: 600"><svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8 11.2 6 6 11.2.8 6Z" fill="currentColor"></path></svg>Loss burst · 31 pkts</span>
+<span style="position: absolute; right: 4px; top: 119px; display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--fg2)">RTP end<svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true" style="color: var(--m1)"><path d="M0 0H8V10H0Z" fill="currentColor"></path></svg></span>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["Dark","Light"],"default":"Dark"},"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'Dark';
+    let s = 17;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const X = (t) => 30 + t / 77.4 * 495;
+    const Yj = (v) => 128 - Math.min(v, 60) / 60 * 118;
+    const bump = (t, c, w, a) => a * Math.exp(-Math.pow((t - c) / w, 2));
+    let jA = '', jB = '';
+    for (let t = 3.9, i = 0; t <= 77.3; t += 0.45, i++) {
+      const burst = (t > 52.4 && t < 55.1) ? 18 : 0;
+      const a = 9.5 + (rnd() - 0.5) * 6 + bump(t, 31.2, 0.5, 38.7) + bump(t, 18, 1.2, 6) + burst + bump(t, 66, 1.5, 5);
+      const b = 7.2 + (rnd() - 0.5) * 4.5 + bump(t, 53.4, 0.7, 20) + bump(t, 44.2, 0.5, 9) + (burst ? 6 : 0);
+      jA += (i ? 'L' : 'M') + X(t).toFixed(1) + ' ' + Yj(a).toFixed(1);
+      jB += (i ? 'L' : 'M') + X(t).toFixed(1) + ' ' + Yj(b).toFixed(1);
+    }
+    const Yl = (v) => 128 - v / 15 * 118;
+    let lA = '', lB = '';
+    const burstA = { 52: 7, 53: 9, 54: 7 }, burstB = { 52: 5, 53: 6, 54: 4 };
+    for (let sec = 4; sec <= 76; sec++) {
+      let a = burstA[sec] ?? (rnd() < 0.34 ? 1 : 0);
+      let b = burstB[sec] ?? (rnd() < 0.34 ? 1 : 0);
+      if (sec === 31) a = 3;
+      const x = X(sec + 0.5) - 2.4;
+      if (a) lA += 'M' + x.toFixed(1) + ' 128V' + Yl(a).toFixed(1) + 'h4.8V128Z';
+      if (b) lB += 'M' + x.toFixed(1) + ' ' + Yl(a).toFixed(1) + 'V' + Yl(a + b).toFixed(1) + 'h4.8V' + Yl(a).toFixed(1) + 'Z';
+    }
+    const TX = (t) => (t / 77.4 * 988).toFixed(1);
+    const lossTicks = [12.3, 27.8, 31.4, 38.6, 63.9, 70.2].map((t) => ({ x: TX(t), y: 69 })).concat([19.4, 41.7, 58.8, 73.1].map((t) => ({ x: TX(t), y: 93 })));
+    const W = 'var(--warn)';
+    const R = [
+      ['Source IP', '10.20.1.23', '10.20.1.28', 1],
+      ['Source Port', '16384', '18230', 1],
+      ['Destination IP', '10.20.1.28', '10.20.1.23', 1],
+      ['Destination Port', '18230', '16384', 1],
+      ['SSRC', '0x5A3C91E2', '0x1F07B4C8 → 0x9D22E071', 1, null, 'var(--acc)'],
+      ['Payload Type', '18', '18', 0],
+      ['Codec', 'G.729 · 8 kHz · 20 ms', 'G.729 · 8 kHz · 20 ms', 0],
+      ['Packets', '3,672', '3,671', 0],
+      ['Lost Packets', '58', '46', 0],
+      ['Packet Loss', '1.58%', '1.25%', 0, W, W],
+      ['Average Jitter', '12.9 ms', '9.8 ms', 0, W, null],
+      ['Maximum Jitter', '48.2 ms', '31.6 ms', 0, W, W],
+      ['Out-of-order', '4', '1', 0],
+      ['Duration', '73.43 s', '73.41 s', 0]
+    ];
+    const rtp = R.map((r, i) => ({ k: r[0], a: r[1], b: r[2], cls: r[3] ? 'mono' : '', ca: r[4] || 'var(--fg)', cb: r[5] || 'var(--fg)', wa: r[4] ? 600 : 400, wb: r[5] ? 600 : 400, bg: i % 2 ? 'var(--stripe)' : 'transparent' }));
+    return { themeClass: theme === 'Light' ? 'light' : '', jitA: jA, jitB: jB, lossA: lA, lossB: lB, lossTicks: lossTicks, rtp: rtp };
+  }
+}
+</script>
+</body>
+</html>
