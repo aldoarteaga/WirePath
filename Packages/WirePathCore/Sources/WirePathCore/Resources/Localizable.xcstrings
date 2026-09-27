@@ -1171,13 +1171,13 @@
                   "one": {
                     "stringUnit": {
                       "state": "translated",
-                      "value": "%arg retransmitted %@ message"
+                      "value": "%arg retransmitted %2$@ message"
                     }
                   },
                   "other": {
                     "stringUnit": {
                       "state": "translated",
-                      "value": "%arg retransmitted %@ messages"
+                      "value": "%arg retransmitted %2$@ messages"
                     }
                   }
                 }
@@ -1199,13 +1199,13 @@
                   "one": {
                     "stringUnit": {
                       "state": "translated",
-                      "value": "%arg mensaje %@ retransmitido"
+                      "value": "%arg mensaje %2$@ retransmitido"
                     }
                   },
                   "other": {
                     "stringUnit": {
                       "state": "translated",
-                      "value": "%arg mensajes %@ retransmitidos"
+                      "value": "%arg mensajes %2$@ retransmitidos"
                     }
                   }
                 }
