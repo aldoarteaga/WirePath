@@ -175,10 +175,10 @@ extension FixtureCatalog {
             return [type] + length + P.be16(messageSequence) + [0, 0, 0] + length + body
         }
         let useSRTP: [UInt8] = [0x00, 0x0E, 0x00, 0x05, 0x00, 0x02, 0x00, 0x01, 0x00]
-        let clientHello: [UInt8] = [0xFE, 0xFD] + bytes(32) + [0] + [0] + P.be16(4) + [0xC0, 0x2B, 0xC0, 0x2F] + [1, 0]
-            + P.be16(UInt16(useSRTP.count)) + useSRTP
+        let clientHello = P.join([0xFE, 0xFD], bytes(32), [0], [0], P.be16(4), [0xC0, 0x2B, 0xC0, 0x2F], [1, 0],
+                                 P.be16(UInt16(useSRTP.count)), useSRTP)
         udp(2.400, b, bPort, a, aPort, dtlsRecord("b", type: 22, epoch: 0, handshake(1, messageSequence: 0, clientHello)))
-        let serverHello: [UInt8] = [0xFE, 0xFD] + bytes(32) + [0] + [0xC0, 0x2B] + [0] + P.be16(UInt16(useSRTP.count)) + useSRTP
+        let serverHello = P.join([0xFE, 0xFD], bytes(32), [0], [0xC0, 0x2B], [0], P.be16(UInt16(useSRTP.count)), useSRTP)
         udp(2.402, a, aPort, b, bPort, dtlsRecord("a", type: 22, epoch: 0, handshake(2, messageSequence: 0, serverHello))
             + dtlsRecord("a", type: 22, epoch: 0, handshake(14, messageSequence: 1, [])))
         udp(2.445, b, bPort, a, aPort, dtlsRecord("b", type: 22, epoch: 0, handshake(16, messageSequence: 1, [65, 0x04] + bytes(64)))

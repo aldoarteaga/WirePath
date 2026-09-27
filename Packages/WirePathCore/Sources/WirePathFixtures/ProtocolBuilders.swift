@@ -5,6 +5,8 @@ import Foundation
 public enum ProtocolBuilders {
     static func be16(_ v: UInt16) -> [UInt8] { [UInt8(v >> 8), UInt8(v & 0xFF)] }
     static func be32(_ v: UInt32) -> [UInt8] { withUnsafeBytes(of: v.bigEndian, Array.init) }
+    /// Concatenates byte fields. Long `+` chains of array literals take older compilers too long to type-check.
+    static func join(_ parts: [UInt8]...) -> [UInt8] { parts.flatMap { $0 } }
 
     // MARK: TCP with options
 
@@ -51,10 +53,10 @@ public enum ProtocolBuilders {
 
     /// A DNS response with one question and the given answers (pre-encoded RDATA), names uncompressed.
     public static func dnsResponse(id: UInt16, question: String, type: UInt16, answers: [(type: UInt16, data: [UInt8])]) -> [UInt8] {
-        var message = be16(id) + [0x81, 0x80] + be16(1) + be16(UInt16(answers.count)) + be16(0) + be16(0)
-        message += dnsName(question) + be16(type) + be16(1)
+        var message = join(be16(id), [0x81, 0x80], be16(1), be16(UInt16(answers.count)), be16(0), be16(0))
+        message += join(dnsName(question), be16(type), be16(1))
         for answer in answers {
-            message += [0xC0, 0x0C] + be16(answer.type) + be16(1) + be32(300) + be16(UInt16(answer.data.count)) + answer.data
+            message += join([0xC0, 0x0C], be16(answer.type), be16(1), be32(300), be16(UInt16(answer.data.count)), answer.data)
         }
         return message
     }
@@ -86,15 +88,15 @@ public enum ProtocolBuilders {
         let groups = tlsExtension(10, [0, 4, 0x00, 0x1D, 0x00, 0x17])
         let extensions = sni + alpn + versions + groups
         let suites: [UInt8] = be16(6) + [0x13, 0x01, 0x13, 0x02, 0xC0, 0x2F]
-        let body: [UInt8] = [0x03, 0x03] + [UInt8](repeating: 0x5A, count: 32) + [0] + suites + [1, 0]
-            + be16(UInt16(extensions.count)) + extensions
+        let body = join([0x03, 0x03], [UInt8](repeating: 0x5A, count: 32), [0], suites, [1, 0],
+                        be16(UInt16(extensions.count)), extensions)
         return tlsRecord(1, body)
     }
 
     public static func tlsServerHello() -> [UInt8] {
         let extensions = tlsExtension(43, [0x03, 0x04])
-        let body: [UInt8] = [0x03, 0x03] + [UInt8](repeating: 0xA5, count: 32) + [0] + [0x13, 0x01] + [0]
-            + be16(UInt16(extensions.count)) + extensions
+        let body = join([0x03, 0x03], [UInt8](repeating: 0xA5, count: 32), [0], [0x13, 0x01], [0],
+                        be16(UInt16(extensions.count)), extensions)
         // TLS 1.3 servers follow with Change Cipher Spec (compatibility) and encrypted records.
         return tlsRecord(2, body) + [20, 3, 3, 0, 1, 1] + [23, 3, 3, 0, 8] + [UInt8](repeating: 0x33, count: 8)
     }

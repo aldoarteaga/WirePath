@@ -460,9 +460,10 @@ public enum FixtureCatalog {
                 compound += [0x81, 202] + P.be16(UInt16(chunk.count / 4)) + chunk
                 if index == 499 {
                     // RFC 3611 VoIP metrics (block type 7): loss 1 %, R 65, MOS-LQ 3.4, MOS-CQ 3.5, JB 40/80 ms.
-                    var metrics: [UInt8] = [7, 0] + P.be16(8) + P.be32(senderSSRC) + [3, 0, 0, 0] + P.be16(0) + P.be16(0)
-                    metrics += P.be16(40) + P.be16(30) + [127, 127, 127, 127] + [65, 127, 34, 35] + [0, 0] + P.be16(40) + P.be16(80) + P.be16(120)
-                    compound += [0x80, 207] + P.be16(UInt16((8 + metrics.count) / 4 - 1)) + P.be32(receiverSSRC) + metrics
+                    var metrics = P.join([7, 0], P.be16(8), P.be32(senderSSRC), [3, 0, 0, 0], P.be16(0), P.be16(0))
+                    metrics += P.join(P.be16(40), P.be16(30), [127, 127, 127, 127], [65, 127, 34, 35], [0, 0],
+                                      P.be16(40), P.be16(80), P.be16(120))
+                    compound += P.join([0x80, 207], P.be16(UInt16((8 + metrics.count) / 4 - 1)), P.be32(receiverSSRC), metrics)
                 }
                 udp(rrSent + oneWay, receiver, 40_003, sender, 40_001, compound)
             }

@@ -6,14 +6,22 @@ on:
 
 jobs:
   build-and-test:
-    # Apple Silicon runner: WirePath targets arm64 only.
-    runs-on: macos-15
+    # Apple Silicon runner with Xcode 27 (public preview image): WirePath targets arm64 only and needs the
+    # Xcode 27 SDKs and Swift 6.4, which the macos-15/macos-26 images do not have.
+    runs-on: xcode-27
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Select Xcode
-        run: sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
+      - name: Select Xcode 27
+        run: |
+          sudo xcode-select -s /Applications/Xcode_27.app
+          xcodebuild -version
+          swift --version
+
+      - name: Generate the Xcode project
+        # WirePath.xcodeproj is generated and not committed.
+        run: python3 scripts/generate-xcodeproj.py
 
       - name: Pick an iPad simulator
         # Full device name, e.g. "iPad Pro 13-inch (M5)": the chip in parentheses is part of it.
