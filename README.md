@@ -4,6 +4,16 @@ WirePath is a native, offline analyzer for packet captures (`.pcap`, `.pcapng`, 
 
 WirePath **never captures traffic**. It has no packet capture, VPN, packet tunnel or Network Extension code and no network entitlements. It only reads files the user opens.
 
+![Overview of a capture: calls, quality metrics and problems that need attention](docs/screenshots/overview.png)
+
+| Call investigation | Packets |
+| --- | --- |
+| ![SIP ladder and RTP analysis of one call](docs/screenshots/call-investigation.png) | ![Packet list, protocol tree and bytes](docs/screenshots/packets.png) |
+| **WebRTC** | **Light appearance** |
+| ![ICE session with its selected candidate pair, DTLS and media](docs/screenshots/webrtc.png) | ![Overview in the light appearance](docs/screenshots/overview-light.png) |
+
+The screenshots are rendered by the app itself (`scripts/snapshot.sh`) from simulated captures, so every address and name in them is fictional.
+
 ## Build, run, test
 
 Requirements: Xcode 27 (Swift 6.4 toolchain) on an Apple Silicon Mac. Deployment targets: macOS 15 (arm64) and iPadOS 18.
