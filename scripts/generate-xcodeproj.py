@@ -13,8 +13,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT = os.path.join(ROOT, "WirePath.xcodeproj")
 
 BUNDLE_ID = "com.wirepath.WirePath"
-VERSION = "0.2.0"
-BUILD = "2"
+VERSION = "0.2.1"
+BUILD = "3"
 
 
 def oid(name):

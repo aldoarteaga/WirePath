@@ -14,6 +14,28 @@ WirePath **never captures traffic**. It has no packet capture, VPN, packet tunne
 
 The screenshots are rendered by the app itself (`scripts/snapshot.sh`) from simulated captures, so every address and name in them is fictional.
 
+## Try it
+
+WirePath is in early testing, and feedback from people who work with VoIP captures is very welcome.
+
+**macOS (Apple Silicon, macOS 15 or later)**
+
+1. Download `WirePath-<version>-macOS.zip` from the [latest release](https://github.com/aldoarteaga/WirePath/releases/latest).
+2. Unzip it and move `WirePath.app` to /Applications.
+3. The build is ad-hoc signed and not notarized, so macOS blocks the first launch. Open System Settings ▸ Privacy & Security and click **Open Anyway**, or clear the quarantine flag:
+
+   ```bash
+   xattr -dr com.apple.quarantine /Applications/WirePath.app
+   ```
+
+**iPadOS 18:** there is no public build yet. You can build the `WirePathiPad` scheme from source with Xcode (see [Build, run, test](#build-run-test)).
+
+**No capture at hand?** The small captures in [`Fixtures/`](Fixtures) are simulated and open in the app: `sip-problems.pcap` (failed calls and SIP errors), `rtp-call.pcap` (a call with audio), `webrtc-session.pcap` (ICE, TURN and DTLS).
+
+**Your captures stay on your Mac.** The app runs in the App Sandbox with no network access, so nothing you open is uploaded anywhere.
+
+**Reporting a problem:** [open an issue](https://github.com/aldoarteaga/WirePath/issues/new) with what you did and what you expected. For a crash, attach the report from `~/Library/Logs/DiagnosticReports/WirePath-*.ips`. A capture that reproduces the problem helps most, but only share one you are allowed to, with any private addresses, numbers or credentials removed.
+
 ## Build, run, test
 
 Requirements: Xcode 27 (Swift 6.4 toolchain) on an Apple Silicon Mac. Deployment targets: macOS 15 (arm64) and iPadOS 18.
@@ -109,10 +131,6 @@ Not implemented yet (planned phases, see `docs/architecture.md`): CSV/JSON expor
 ## Dependencies
 
 None beyond Apple's SDKs — see `docs/dependencies.md`.
-
-## Install (macOS)
-
-Download `WirePath-<version>-macOS.zip` from the repository's Releases, unzip it, and move `WirePath.app` to /Applications. It needs an Apple Silicon Mac on macOS 15 or later. The build is ad-hoc signed and not notarized, so on first launch macOS blocks it. Right-click the app, choose Open, then Open again (on macOS 15, use System Settings ▸ Privacy & Security ▸ Open Anyway). Or clear the quarantine flag: `xattr -dr com.apple.quarantine /Applications/WirePath.app`.
 
 ## License
 
