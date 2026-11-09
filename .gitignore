@@ -5,3 +5,5 @@ Samples/
 *.xcodeproj/
 DerivedData/
 .DS_Store
+.atl/
+.nodeterm/
